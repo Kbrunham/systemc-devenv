@@ -9,7 +9,7 @@
 ## DevContainer (recommended)
 
 1. Open the repo in VS Code / Cursor with Dev Containers
-2. Image: `mcr.microsoft.com/devcontainers/cpp:3-ubuntu26.04`
+2. Image: `mcr.microsoft.com/devcontainers/cpp:ubuntu-24.04`
 3. `postCreateCommand` runs `make prepare-tools` automatically
 
 ## Local setup

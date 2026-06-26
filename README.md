@@ -12,7 +12,7 @@ hello-world SystemC model with a GoogleTest smoke test.
 - **Boost 1.86.0** — Makefile fetch/build, install prefix `./boost`
 - **GoogleTest** — in-tree under `extern/googletest`
 - **CMake 3.24+** — model library, executable, smoke test, optional coverage
-- **DevContainer** — `mcr.microsoft.com/devcontainers/cpp:3-ubuntu26.04`
+- **DevContainer** — `mcr.microsoft.com/devcontainers/cpp:ubuntu-24.04`
 
 ## Quick start
 

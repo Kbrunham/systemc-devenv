@@ -16,7 +16,7 @@ Do not add SPI or other domain-specific content here.
 | Boost | 1.86.0 via `make boost` → `./boost` |
 | C++ | C++17 |
 | CMake minimum | 3.24 |
-| DevContainer | `mcr.microsoft.com/devcontainers/cpp:3-ubuntu26.04` |
+| DevContainer | `mcr.microsoft.com/devcontainers/cpp:ubuntu-24.04` |
 | Tests | GoogleTest in `extern/googletest` |
 
 ## Where code lives
