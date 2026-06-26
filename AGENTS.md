@@ -66,7 +66,11 @@ make prepare-tools
 cmake -B build
 cmake --build build
 ctest --test-dir build
+make style-check-clang   # requires venv from prepare-tools
 ```
+
+Any C/C++ files you add or edit must pass `make style-check-clang` before submission.
+Run `make style-format-clang` to apply `.clang-format` automatically.
 
 ## Scope boundaries
 

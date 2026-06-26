@@ -16,7 +16,8 @@ SC_MODULE(hello_module)
         sc_stop();
     }
 
-    SC_CTOR(hello_module) : done("done")
+    SC_CTOR(hello_module)
+        : done("done")
     {
         SC_THREAD(run);
     }

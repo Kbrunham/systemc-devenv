@@ -31,6 +31,9 @@ Code layout:
 
 Verify changes:
 make prepare-tools && cmake -B build && cmake --build build && ctest --test-dir build
+make style-check-clang
+
+Format C/C++ before submitting: make style-format-clang (required for CI).
 
 Confirm you have read the docs and understand whether this checkout is the upstream
 template repo or a product/IP repo created from it.

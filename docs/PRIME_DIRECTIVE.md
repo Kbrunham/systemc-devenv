@@ -68,7 +68,8 @@ architectural TODOs belong in a repo created from this template.
 5. A single change may touch docs, model, tests, and build files when needed to keep
    the repository consistent.
 6. Locked toolchain versions change only by updating [PLANNING.md](PLANNING.md) with justification.
-7. Verify with the standard build sequence before considering work complete.
+7. Verify with the standard build sequence and `make style-check-clang` before considering work complete.
+8. Run `make style-format-clang` on any C/C++ files you add or edit.
 
 ## Related documentation
 
