@@ -3,6 +3,8 @@
 
 #include "hello_module.hpp"
 
+using namespace sc_core;
+
 TEST(SystemcSmokeTest, HelloModuleRunsAndSignalsDone)
 {
     hello_module hello("hello");

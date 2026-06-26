@@ -1,7 +1,9 @@
 {
 	"name": "SystemC Dev",
-	"image": "mcr.microsoft.com/devcontainers/cpp:3-ubuntu26.04",
-	"postCreateCommand": "make prepare-tools",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && make prepare-tools",
 
 	"customizations": {
 		"vscode": {
