@@ -1,7 +1,7 @@
 # Agent guide — systemc-devenv
 
 This repository is a **SystemC development template**, not a product IP repo.
-Do not add SPI or other domain-specific content here.
+Do not add domain-specific specs, requirements, or IP content here.
 
 ## New chat
 
@@ -10,7 +10,7 @@ fresh Cursor chat to initialize the session.
 
 ## Read first
 
-1. [docs/PLANNING.md](docs/PLANNING.md) — locked decisions and milestone checklist
+1. [docs/PLANNING.md](docs/PLANNING.md) — locked decisions and template milestones
 2. [docs/agents/GETTING_STARTED.md](docs/agents/GETTING_STARTED.md) — build flow and conventions
 
 ## Locked choices (do not change without updating PLANNING.md)
@@ -41,6 +41,6 @@ ctest --test-dir build
 
 ## Scope boundaries
 
-- Generic template only — no SPI spec, `REQ-` IDs, or product `todo/` content
+- Generic template only — no product specs, requirement IDs, or `todo/` content
 - CI (`.github/`) changes are deferred unless trivial
 - Ask before large structural changes not listed in PLANNING.md

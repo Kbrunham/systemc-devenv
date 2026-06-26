@@ -2,8 +2,8 @@
 
 ## Purpose
 
-**systemc-devenv** is a reusable template for SystemC model work. Product repos
-(e.g. spi-systemc-model) are created via GitHub "Use this template".
+**systemc-devenv** is a reusable template for SystemC model work. Create a product
+repo for your IP via GitHub **"Use this template"**.
 
 ## Build sequence
 
@@ -28,7 +28,7 @@ the Makefile defaults (CMakeLists sets sensible defaults relative to the repo ro
 ## Layout
 
 ```
-model/views/cycle_accurate/   # hello sc_module (Milestone 1)
+model/views/cycle_accurate/   # hello sc_module
 model/views/loosely_timed/    # stub
 model/views/approximately_timed/ # stub
 verification/systemc/smoke/   # GTest smoke test
@@ -41,7 +41,7 @@ extern/cmake_helpers/         # project_add_test macro
 - **C++17**, `sc_module` + signals for cycle-accurate models
 - **CMake:** `cmake_minimum_required(VERSION 3.24)`, `CMAKE_EXPORT_COMPILE_COMMANDS ON`
 - **Coverage:** `-DENABLE_COVERAGE=ON` for gcov/lcov (optional)
-- **Do not** add SPI/IP-specific specs or requirements here
+- **Do not** add domain-specific specs or requirements here
 
 ## Style
 
@@ -52,4 +52,4 @@ make style-format-clang
 
 ## Reference
 
-Full decisions and milestones: [../PLANNING.md](../PLANNING.md)
+Locked decisions and milestones: [../PLANNING.md](../PLANNING.md)
