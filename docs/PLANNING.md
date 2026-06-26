@@ -10,8 +10,8 @@ first. This file records **how** the template is built, not the full mission sta
 Use GitHub **"Use this template"** to create a new repo for your IP (SPI controller,
 UART, custom block, etc.) and add domain content there.
 
-See [PRIME_DIRECTIVE.md](PRIME_DIRECTIVE.md) and [TEMPLATE_VS_PRODUCT.md](TEMPLATE_VS_PRODUCT.md)
-for what belongs in this repo vs a product repository.
+See [PRIME_DIRECTIVE.md](PRIME_DIRECTIVE.md) for what belongs in this repo vs a product
+repository.
 
 This template provides:
 
@@ -63,7 +63,6 @@ systemc-devenv/
 ├── CMakeLists.txt
 ├── docs/
 │   ├── PRIME_DIRECTIVE.md            # mission, scope, agent rules (read first)
-│   ├── TEMPLATE_VS_PRODUCT.md        # template vs product scope
 │   ├── PLANNING.md                   # this file
 │   ├── developer/getting-started.md
 │   └── agents/
@@ -91,7 +90,7 @@ systemc-devenv/
 - [x] Hello `sc_module` in `model/views/cycle_accurate/`
 - [x] Smoke test passes: `make prepare-tools && cmake -B build && cmake --build build && ctest --test-dir build`
 - [x] Generic `AGENTS.md` + `docs/agents/GETTING_STARTED.md`
-- [x] `docs/PRIME_DIRECTIVE.md` + `docs/TEMPLATE_VS_PRODUCT.md`
+- [x] `docs/PRIME_DIRECTIVE.md`
 - [x] Product-repo scaffold notes in `AGENTS.md` and `docs/PRIME_DIRECTIVE.md`
 - [ ] Tag e.g. `v0.1.0`
 - [ ] Enable "Template repository" on GitHub

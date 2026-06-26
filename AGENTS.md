@@ -19,7 +19,6 @@ fresh agent chat to initialize the session.
 1. [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md) — mission, scope, agent rules
 2. [docs/PLANNING.md](docs/PLANNING.md) — technical decisions and milestones
 3. [docs/agents/GETTING_STARTED.md](docs/agents/GETTING_STARTED.md) — build flow and layout
-4. [docs/TEMPLATE_VS_PRODUCT.md](docs/TEMPLATE_VS_PRODUCT.md) — upstream template reference
 
 ## Before starting any task
 

@@ -13,8 +13,7 @@ create product repos (for example, `spi-systemc-model`) with reproducible System
 a standard layout, and clear agent conventions.
 
 Read **[docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md)** for the full mission, what
-belongs here vs in a product repo, and how agents should work. See also
-[docs/TEMPLATE_VS_PRODUCT.md](docs/TEMPLATE_VS_PRODUCT.md).
+belongs here vs in a product repo, and how agents should work.
 
 ## Using this as a template
 

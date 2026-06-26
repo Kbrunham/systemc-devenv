@@ -9,8 +9,6 @@ repository for your IP via GitHub **"Use this template"**. After instantiating a
 repo, delete or replace the template notes in `AGENTS.md` and
 `docs/PRIME_DIRECTIVE.md` with the concrete IP/block scope.
 
-Unsure where work belongs? See [../TEMPLATE_VS_PRODUCT.md](../TEMPLATE_VS_PRODUCT.md).
-
 ## Build sequence
 
 ```bash
@@ -63,4 +61,3 @@ make style-format-clang
 |----------|---------|
 | [PRIME_DIRECTIVE.md](../PRIME_DIRECTIVE.md) | Why this repo exists; agent rules |
 | [PLANNING.md](../PLANNING.md) | Locked technical decisions |
-| [TEMPLATE_VS_PRODUCT.md](../TEMPLATE_VS_PRODUCT.md) | Template vs product scope |
