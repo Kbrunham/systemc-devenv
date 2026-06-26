@@ -36,8 +36,13 @@ VENV_CLANG_FORMAT := $(VENV_DIR)/bin/clang-format
 
 BOOST_VERSION ?= 1.86.0
 BOOST_VERSION_MOD := $(subst .,_,$(BOOST_VERSION))
-BOOT_ROOTDIR ?= $(REPO_ROOT_DIR)/boost
+BOOST_ROOTDIR ?= $(REPO_ROOT_DIR)/boost
 export BOOST_ROOTDIR
+export BOOST_ROOT=$(BOOST_ROOTDIR)
+
+SYSTEMC_VERSION ?= 3.0.2
+SYSTEMC_HOME ?= $(REPO_ROOT_DIR)/systemc
+export SYSTEMC_HOME
 
 ##############################################################################
 # Set default goal before any targets. The default goal here is "test"
@@ -71,6 +76,17 @@ boost: |$(WORK_ROOT_DIR)
 		--link=static
 	rm -rf $(WORK_ROOT_DIR)/boost_$(BOOST_VERSION_MOD) $(WORK_ROOT_DIR)/boost_$(BOOST_VERSION_MOD).tar.bz2
 
+systemc: |$(WORK_ROOT_DIR)
+	cd $(WORK_ROOT_DIR) && wget -q https://github.com/accellera-official/systemc/archive/refs/tags/$(SYSTEMC_VERSION).tar.gz -O systemc-$(SYSTEMC_VERSION).tar.gz
+	cd $(WORK_ROOT_DIR) && tar -xzf systemc-$(SYSTEMC_VERSION).tar.gz
+	cd $(WORK_ROOT_DIR)/systemc-$(SYSTEMC_VERSION) && cmake -B build \
+		-DCMAKE_INSTALL_PREFIX=$(SYSTEMC_HOME) \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_CXX_STANDARD=17 \
+		-DBUILD_SHARED_LIBS=OFF
+	cd $(WORK_ROOT_DIR)/systemc-$(SYSTEMC_VERSION)/build && cmake --build . -j$$(nproc) && cmake --install .
+	rm -rf $(WORK_ROOT_DIR)/systemc-$(SYSTEMC_VERSION) $(WORK_ROOT_DIR)/systemc-$(SYSTEMC_VERSION).tar.gz
+
 
 .PHONY: clean
 clean:
@@ -82,7 +98,7 @@ dev-clean :
 	git clean -dfx --exclude=/.vscode --exclude=.lfsconfig
 
 .PHONY: prepare-tools
-prepare-tools : venv boost
+prepare-tools : venv boost systemc
 
 ##############################################################################
 # Style checks
