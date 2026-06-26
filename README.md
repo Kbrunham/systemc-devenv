@@ -1,16 +1,44 @@
-# cpp-devenv
-C++ Template Project
+# systemc-devenv
 
-This is a template project for C++ projects using a DevContainer. It includes a basic CMakeLists.txt file, a basic .gitignore file, and a basic README.md file. It is intended to be a starting point for new C++ projects.
+Reusable GitHub template for SystemC model development.
 
-Includes:
-   * CXX Opts v3.2.1 (In Tree)
-   * Google Test v1.15.2 (In Tree)
-   * Boost 1.86 (In Tree)
+Derived from [cpp-devenv](https://github.com/Kbrunham/cpp-devenv). Provides build
+infrastructure, a DevContainer, directory layout for models and verification, and a
+hello-world SystemC model with a GoogleTest smoke test.
 
+## What's included
 
-## Usage
+- **SystemC 3.0.2** — Makefile fetch/build, install prefix `./systemc`
+- **Boost 1.86.0** — Makefile fetch/build, install prefix `./boost`
+- **GoogleTest** — in-tree under `extern/googletest`
+- **CMake 3.24+** — model library, executable, smoke test, optional coverage
+- **DevContainer** — `mcr.microsoft.com/devcontainers/cpp:3-ubuntu26.04`
 
-Set a repo secret called GH_TOKEN with a token generated using **gh auth token**
-Set a dependabot secret called GH_TOKEN with a token generated using **gh auth token**
-Set branch protections with required status checks for **style-check-status** and **build-test-status**
+## Quick start
+
+```bash
+make prepare-tools
+cmake -B build
+cmake --build build
+ctest --test-dir build
+```
+
+See [docs/developer/getting-started.md](docs/developer/getting-started.md) for local
+setup details and [docs/agents/GETTING_STARTED.md](docs/agents/GETTING_STARTED.md)
+for agent-oriented guidance.
+
+## Directory layout
+
+```
+model/views/
+  cycle_accurate/     # primary sc_module style (hello-world in v1)
+  loosely_timed/      # placeholder
+  approximately_timed/ # placeholder
+verification/systemc/smoke/   # GTest smoke test
+```
+
+Planning notes and locked decisions: [docs/PLANNING.md](docs/PLANNING.md).
+
+## License
+
+MIT — see [LICENSE](LICENSE).
