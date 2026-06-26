@@ -50,9 +50,12 @@ extern/cmake_helpers/         # project_add_test macro
 
 ## Style
 
+All C/C++ files tracked by git must pass clang-format before submission (CI runs
+`make style-check-clang`). Agents must format any C/C++ they create or edit:
+
 ```bash
-make style-check-clang   # requires venv from prepare-tools
-make style-format-clang
+make style-format-clang   # apply .clang-format
+make style-check-clang    # verify (requires venv from prepare-tools)
 ```
 
 ## Reference
