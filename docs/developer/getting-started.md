@@ -10,7 +10,7 @@
 
 1. Open the repo in VS Code / Cursor with Dev Containers
 2. Image: `mcr.microsoft.com/devcontainers/cpp:ubuntu-24.04`
-3. `postCreateCommand` runs `make prepare-tools` automatically
+3. Run `make prepare-tools` (or individual `make` targets) when you first need dependencies
 
 ## Local setup
 

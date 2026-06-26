@@ -3,7 +3,7 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-	"postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && make prepare-tools",
+	"postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
 
 	"customizations": {
 		"vscode": {
