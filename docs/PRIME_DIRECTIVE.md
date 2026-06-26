@@ -59,9 +59,6 @@ to reusable template infrastructure and patterns:
 Product-specific specs, `REQ-` IDs, protocol behavior, product test plans, and
 architectural TODOs belong in a repo created from this template.
 
-See [TEMPLATE_VS_PRODUCT.md](TEMPLATE_VS_PRODUCT.md) for the upstream template/product
-repo distinction.
-
 ## Agent rules
 
 1. Before starting, state whether the work is template infrastructure or product/IP work.
@@ -81,4 +78,3 @@ repo distinction.
 | [PLANNING.md](PLANNING.md) | Locked technical decisions and milestones |
 | [agents/GETTING_STARTED.md](agents/GETTING_STARTED.md) | Build flow and layout |
 | [agents/CHAT_INIT.md](agents/CHAT_INIT.md) | Copy-paste prompt for new agent sessions |
-| [TEMPLATE_VS_PRODUCT.md](TEMPLATE_VS_PRODUCT.md) | Template vs product scope |
