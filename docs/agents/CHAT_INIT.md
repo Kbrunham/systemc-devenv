@@ -1,16 +1,18 @@
 # New chat — copy-paste prompt
 
-Open a new Cursor chat, copy the block below, and send it as your first message.
+Open a new agent chat, copy the block below, and send it as your first message.
 
 ```
 Read these files to get up to speed with this repo:
 
-1. AGENTS.md — scope, locked choices, where code lives
-2. docs/PLANNING.md — locked decisions and template milestones
-3. docs/agents/GETTING_STARTED.md — build flow and conventions
+1. docs/PRIME_DIRECTIVE.md — mission, scope, template vs product, agent rules
+2. AGENTS.md — quick reference and locked choices
+3. docs/PLANNING.md — locked technical decisions and template milestones
+4. docs/agents/GETTING_STARTED.md — build flow and conventions
 
 This is **systemc-devenv**, a generic SystemC development template (not a product IP repo).
-Do not add product specs, requirement IDs, or other domain-specific IP content here.
+Before making changes, state whether the work is template infrastructure (allowed here)
+or product IP (belongs in a derived repo created via "Use this template").
 
 Locked stack (do not change without updating PLANNING.md):
 - SystemC 3.0.2 → ./systemc (make systemc)
@@ -26,10 +28,12 @@ Code layout:
 Verify changes:
 make prepare-tools && cmake -B build && cmake --build build && ctest --test-dir build
 
-Confirm you have read the docs and are ready to work in this repo.
+Confirm you have read the docs and understand this is a template repo, not a product IP repo.
 ```
 
 ## After pasting
 
-The agent should acknowledge the repo context before you assign work. For ongoing
-reference, see [GETTING_STARTED.md](GETTING_STARTED.md) and [AGENTS.md](../../AGENTS.md).
+The agent should acknowledge the repo context and whether planned work belongs in this
+template or a downstream product repo. For ongoing reference, see
+[GETTING_STARTED.md](GETTING_STARTED.md), [PRIME_DIRECTIVE.md](../PRIME_DIRECTIVE.md), and
+[AGENTS.md](../../AGENTS.md).

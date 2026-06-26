@@ -1,14 +1,17 @@
 # systemc-devenv — Template decisions
 
 Locked technical choices and layout for this reusable SystemC development template.
-Read this before making structural changes. Product-specific specs and requirements
-belong in repos created from this template, not here.
+For **why this repo exists** and agent scope rules, read [PRIME_DIRECTIVE.md](PRIME_DIRECTIVE.md)
+first. This file records **how** the template is built, not the full mission statement.
 
 ## Purpose
 
 **systemc-devenv** is a generic GitHub template for SystemC model development.
 Use GitHub **"Use this template"** to create a new repo for your IP (SPI controller,
 UART, custom block, etc.) and add domain content there.
+
+See [PRIME_DIRECTIVE.md](PRIME_DIRECTIVE.md) and [TEMPLATE_VS_PRODUCT.md](TEMPLATE_VS_PRODUCT.md)
+for what belongs in this repo vs a product repository.
 
 This template provides:
 
@@ -59,6 +62,8 @@ systemc-devenv/
 ├── Makefile
 ├── CMakeLists.txt
 ├── docs/
+│   ├── PRIME_DIRECTIVE.md            # mission, scope, agent rules (read first)
+│   ├── TEMPLATE_VS_PRODUCT.md        # template vs product scope
 │   ├── PLANNING.md                   # this file
 │   ├── developer/getting-started.md
 │   └── agents/
@@ -86,6 +91,7 @@ systemc-devenv/
 - [x] Hello `sc_module` in `model/views/cycle_accurate/`
 - [x] Smoke test passes: `make prepare-tools && cmake -B build && cmake --build build && ctest --test-dir build`
 - [x] Generic `AGENTS.md` + `docs/agents/GETTING_STARTED.md`
+- [x] `docs/PRIME_DIRECTIVE.md` + `docs/TEMPLATE_VS_PRODUCT.md`
 - [ ] Tag e.g. `v0.1.0`
 - [ ] Enable "Template repository" on GitHub
 
