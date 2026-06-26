@@ -1,66 +1,80 @@
-﻿cmake_minimum_required(VERSION 3.20)
+﻿cmake_minimum_required(VERSION 3.24)
 
-project(cmake_example
-        VERSION 1.0
-        DESCRIPTION "cmake example"
-        LANGUAGES CXX
-        )
+project(systemc_devenv
+        VERSION 0.1.0
+        DESCRIPTION "SystemC development template"
+        LANGUAGES CXX)
 
-# Set the minimum required C++ standard.
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Include build common macros
-message("INFO: Including CMake bcommon")
+option(ENABLE_COVERAGE "Enable gcov/lcov coverage instrumentation" OFF)
+if (ENABLE_COVERAGE)
+    add_compile_options(--coverage -fprofile-arcs -ftest-coverage)
+    add_link_options(--coverage)
+endif ()
+
 include("${CMAKE_CURRENT_SOURCE_DIR}/extern/cmake_helpers/bcommon.cmake")
+build_project_msg()
 
-# Set folder support for use with IDEs
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-# Enable testing
 include(CTest)
+include(GoogleTest)
 
-# Include 3rd party libraries from source tree
-
-# Add boost
-# Set default boost root as /boost in the project source directory
 if (NOT BOOST_ROOT)
     set(BOOST_ROOT "${PROJECT_SOURCE_DIR}/boost")
 endif ()
 find_package(Boost 1.86 REQUIRED)
 message(STATUS "Boost version: ${Boost_VERSION}")
-message(STATUS "Boost include dir: ${Boost_INCLUDE_DIRS}")
-message(STATUS "Boost library dir: ${Boost_LIBRARY_DIRS}")
-message(STATUS "Boost libraries: ${Boost_LIBRARIES}")
 
-# Add Google Test
-include(GoogleTest)
-# Disable installing googletest
+if (DEFINED ENV{SYSTEMC_HOME})
+    set(SYSTEMC_HOME "$ENV{SYSTEMC_HOME}")
+else ()
+    set(SYSTEMC_HOME "${PROJECT_SOURCE_DIR}/systemc")
+endif ()
+message(STATUS "SystemC home: ${SYSTEMC_HOME}")
+
+find_path(SYSTEMC_INCLUDE_DIR
+        NAMES systemc
+        HINTS "${SYSTEMC_HOME}/include")
+find_library(SYSTEMC_LIBRARY
+        NAMES systemc
+        HINTS "${SYSTEMC_HOME}/lib" "${SYSTEMC_HOME}/lib-${CMAKE_SYSTEM_NAME}")
+
+if (NOT SYSTEMC_INCLUDE_DIR OR NOT SYSTEMC_LIBRARY)
+    message(FATAL_ERROR "SystemC not found under ${SYSTEMC_HOME}. Run 'make systemc' or 'make prepare-tools'.")
+endif ()
+
+add_library(systemc::systemc UNKNOWN IMPORTED)
+set_target_properties(systemc::systemc PROPERTIES
+        IMPORTED_LOCATION "${SYSTEMC_LIBRARY}"
+        INTERFACE_INCLUDE_DIRECTORIES "${SYSTEMC_INCLUDE_DIR}")
+
+find_package(Threads REQUIRED)
+
 set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
-# Prevent Google Test from modifying compiler/linker options (https://crascit.com/2015/07/25/cmake-gtest/)
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-# Force building GoogleTest as static, but then leave BUILD_SHARED_LIBS to control
-# defaults for the rest of the project`
 set(__TEMP_BUILD_SHARED_LIBS ${BUILD_SHARED_LIBS})
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
 add_subdirectory("${PROJECT_SOURCE_DIR}/extern/googletest" "extern/googletest")
 set(BUILD_SHARED_LIBS ${__TEMP_BUILD_SHARED_LIBS} CACHE BOOL "" FORCE)
 
-# Add cxxopts
-add_subdirectory("${PROJECT_SOURCE_DIR}/extern/cxxopts" "extern/cxxopts" EXCLUDE_FROM_ALL)
+add_library(cycle_accurate_hello INTERFACE)
+target_include_directories(cycle_accurate_hello INTERFACE
+        "${CMAKE_CURRENT_SOURCE_DIR}/model/views/cycle_accurate")
+target_link_libraries(cycle_accurate_hello INTERFACE systemc::systemc Threads::Threads)
 
-# Add source to this project's executable.
-add_executable(main "main.cpp" "main.h")
-target_link_libraries(main Boost::headers)
-target_link_libraries(main cxxopts)
+add_executable(hello_systemc model/views/cycle_accurate/hello_main.cpp)
+target_link_libraries(hello_systemc PRIVATE cycle_accurate_hello)
+set_target_properties(hello_systemc PROPERTIES FOLDER model)
 
 project_add_test(
-        # Exe name
-        main_test1
-
-        # Source files. Semicolon separated
-        "test_main.cpp"
-
-        # Libs. Semicolon separated
-        "Boost::headers"
+        systemc_smoke
+        "verification/systemc/smoke/smoke_test.cpp"
+        "cycle_accurate_hello"
 )
+
+target_include_directories(systemc_smoke PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/model/views/cycle_accurate")
