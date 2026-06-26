@@ -1,17 +1,19 @@
 # Agent guide — systemc-devenv
 
-This repository is a **SystemC development template**, not a product IP repo.
-Do not add domain-specific specs, requirements, or IP content here.
+**Read first:** [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md) — why this repo exists,
+what belongs here vs in a product repo, and how agents should work.
 
 ## New chat
 
 Copy the prompt from [docs/agents/CHAT_INIT.md](docs/agents/CHAT_INIT.md) into a
-fresh Cursor chat to initialize the session.
+fresh agent chat to initialize the session.
 
-## Read first
+## Read order
 
-1. [docs/PLANNING.md](docs/PLANNING.md) — locked decisions and template milestones
-2. [docs/agents/GETTING_STARTED.md](docs/agents/GETTING_STARTED.md) — build flow and conventions
+1. [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md) — mission, scope, agent rules
+2. [docs/PLANNING.md](docs/PLANNING.md) — locked technical decisions and milestones
+3. [docs/agents/GETTING_STARTED.md](docs/agents/GETTING_STARTED.md) — build flow and layout
+4. [docs/TEMPLATE_VS_PRODUCT.md](docs/TEMPLATE_VS_PRODUCT.md) — when work belongs here vs downstream
 
 ## Locked choices (do not change without updating PLANNING.md)
 
@@ -41,6 +43,7 @@ ctest --test-dir build
 
 ## Scope boundaries
 
-- Generic template only — no product specs, requirement IDs, or `todo/` content
+- **Template infrastructure only** — see [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md)
+- No product specs, `REQ-` IDs, or product `todo/` content
 - CI (`.github/`) changes are deferred unless trivial
 - Ask before large structural changes not listed in PLANNING.md

@@ -81,5 +81,7 @@ Built artifacts: remove `build/` manually or use a fresh build directory.
 
 ## Next steps
 
-- Read [PLANNING.md](../PLANNING.md) for locked decisions and template milestones
+- Read [PRIME_DIRECTIVE.md](../PRIME_DIRECTIVE.md) for why this repo exists and template scope
+- Read [PLANNING.md](../PLANNING.md) for locked technical decisions and milestones
+- Read [TEMPLATE_VS_PRODUCT.md](../TEMPLATE_VS_PRODUCT.md) before adding IP-specific content
 - Create a new repo via GitHub **"Use this template"** for your IP model

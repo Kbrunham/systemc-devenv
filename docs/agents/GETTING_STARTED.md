@@ -2,8 +2,13 @@
 
 ## Purpose
 
+Full mission, scope, and agent rules: **[../PRIME_DIRECTIVE.md](../PRIME_DIRECTIVE.md)**.
+
 **systemc-devenv** is a reusable template for SystemC model work. Create a product
-repo for your IP via GitHub **"Use this template"**.
+repository for your IP via GitHub **"Use this template"**. Product-specific executable-spec
+rules live in that repo's own `docs/PRIME_DIRECTIVE.md`, not here.
+
+Unsure where work belongs? See [../TEMPLATE_VS_PRODUCT.md](../TEMPLATE_VS_PRODUCT.md).
 
 ## Build sequence
 
@@ -41,7 +46,7 @@ extern/cmake_helpers/         # project_add_test macro
 - **C++17**, `sc_module` + signals for cycle-accurate models
 - **CMake:** `cmake_minimum_required(VERSION 3.24)`, `CMAKE_EXPORT_COMPILE_COMMANDS ON`
 - **Coverage:** `-DENABLE_COVERAGE=ON` for gcov/lcov (optional)
-- **Do not** add domain-specific specs or requirements here
+- **Do not** add domain-specific specs, `REQ-` IDs, or product TODOs — see [PRIME_DIRECTIVE.md](../PRIME_DIRECTIVE.md)
 
 ## Style
 
@@ -52,4 +57,8 @@ make style-format-clang
 
 ## Reference
 
-Locked decisions and milestones: [../PLANNING.md](../PLANNING.md)
+| Document | Purpose |
+|----------|---------|
+| [PRIME_DIRECTIVE.md](../PRIME_DIRECTIVE.md) | Why this repo exists; agent rules |
+| [PLANNING.md](../PLANNING.md) | Locked technical decisions |
+| [TEMPLATE_VS_PRODUCT.md](../TEMPLATE_VS_PRODUCT.md) | Template vs product scope |
