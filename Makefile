@@ -103,7 +103,7 @@ prepare-tools : venv boost systemc
 ##############################################################################
 # Style checks
 ##############################################################################
-CLANG_CHECK_FILES := $(shell git ls-files *.c* *.h)
+CLANG_CHECK_FILES := $(shell git ls-files *.c *.cpp *.h *.hpp)
 
 .PHONY: style-check-clang
 style-check-clang: |venv
