@@ -1,32 +1,22 @@
-# systemc-devenv — Planning (handoff from spi-systemc-model design sessions)
+# systemc-devenv — Template decisions
 
-This document captures decisions made while planning **spi-systemc-model**.
-Read this before making structural changes to this template repo.
+Locked technical choices and layout for this reusable SystemC development template.
+Read this before making structural changes. Product-specific specs and requirements
+belong in repos created from this template, not here.
 
-## Purpose of this repo
+## Purpose
 
-**systemc-devenv** is a reusable GitHub template for SystemC model development.
-When the template reaches hello-world milestone, **spi-systemc-model** will be
-recreated via "Use this template" and SPI-specific content added there.
+**systemc-devenv** is a generic GitHub template for SystemC model development.
+Use GitHub **"Use this template"** to create a new repo for your IP (SPI controller,
+UART, custom block, etc.) and add domain content there.
 
-This repo is **not** the SPI IP repo. It provides:
+This template provides:
 
 - Build infrastructure (CMake, Makefile-managed deps)
 - DevContainer
 - Directory layout for models and verification
 - Hello-world SystemC model + GTest smoke test
 - Generic agent/developer documentation
-
-## Downstream: spi-systemc-model prime directive
-
-The SPI product repo will maintain:
-
-1. Markdown specification (human-readable)
-2. SystemC model (executable specification)
-3. Tests that keep spec and model aligned
-
-Gaps → `todo/ARCHITECTURAL.md` with `REQ-` requirement IDs.
-That content belongs in **spi-systemc-model**, not here (except generic patterns).
 
 ## Locked technical decisions
 
@@ -42,7 +32,7 @@ That content belongs in **spi-systemc-model**, not here (except generic patterns
 | Coverage | Optional `ENABLE_COVERAGE` (gcov/lcov), documented |
 | Primary model style | `sc_module` + signals (cycle-accurate view) |
 | Other timing views | `loosely_timed/`, `approximately_timed/` — placeholders only in v1 |
-| CI/CD | **Deferred** until hello-world works locally |
+| CI/CD | **Deferred** for v1 |
 | License | MIT |
 
 ## Dependency strategy
@@ -52,7 +42,6 @@ That content belongs in **spi-systemc-model**, not here (except generic patterns
 - `make boost` — download, build, install to `boost/`
 - `make systemc` — download Accellera 3.0.2, CMake build, install to `systemc/`
 - `make prepare-tools` — `venv` + `boost` + `systemc` (on demand; not run at container create)
-- `postCreateCommand` in devcontainer: `git safe.directory` only
 
 Gitignore: `boost/`, `systemc/`, `work/`, `venv/`, build dirs.
 
@@ -61,57 +50,50 @@ Environment for CMake:
 - `SYSTEMC_HOME=$(REPO_ROOT)/systemc`
 - `BOOST_ROOT` / `BOOST_ROOTDIR` per Makefile
 
-## Target directory layout
+## Directory layout
 
 ```
 systemc-devenv/
 ├── AGENTS.md
 ├── README.md
-├── Makefile                          # extend cpp-devenv (+ systemc target)
-├── CMakeLists.txt                    # SystemC + GTest + coverage option
+├── Makefile
+├── CMakeLists.txt
 ├── docs/
 │   ├── PLANNING.md                   # this file
 │   ├── developer/getting-started.md
-│   └── agents/GETTING_STARTED.md
+│   └── agents/
+│       ├── GETTING_STARTED.md
+│       └── CHAT_INIT.md
 ├── model/
 │   └── views/
-│       ├── cycle_accurate/           # hello sc_module (Milestone 1)
+│       ├── cycle_accurate/           # hello sc_module
 │       ├── loosely_timed/            # README stub
 │       └── approximately_timed/      # README stub
 ├── verification/
 │   └── systemc/smoke/                # GTest smoke test
-├── extern/                           # googletest, cmake_helpers (from cpp-devenv)
-└── .devcontainer/                    # ubuntu-24.04, postCreateCommand
+├── extern/                           # googletest, cmake_helpers
+└── .devcontainer/
 ```
-
-Remove or relocate cpp-devenv sample `main.cpp` / `test_main.cpp` at repo root.
 
 ## Milestone 1 (template complete)
 
-- [ ] README renamed for systemc-devenv
-- [ ] Makefile: `systemc` target + `prepare-tools` includes systemc
-- [ ] `.gitignore`: systemc/, boost/, work/, venv/
-- [ ] Devcontainer: `ubuntu-24.04`, deps built on demand (not in `postCreateCommand`)
-- [ ] CMake: find SystemC, build model lib/exe, GTest smoke test, `ENABLE_COVERAGE`
-- [ ] `CMAKE_EXPORT_COMPILE_COMMANDS ON`
-- [ ] Hello `sc_module` in `model/views/cycle_accurate/`
-- [ ] Smoke test passes: `make prepare-tools && cmake -B build && cmake --build build && ctest --test-dir build`
-- [ ] Generic `AGENTS.md` + `docs/agents/GETTING_STARTED.md`
+- [x] README renamed for systemc-devenv
+- [x] Makefile: `systemc` target + `prepare-tools` includes systemc
+- [x] `.gitignore`: systemc/, boost/, work/, venv/
+- [x] Devcontainer: `ubuntu-24.04`, deps built on demand
+- [x] CMake: find SystemC, build model lib/exe, GTest smoke test, `ENABLE_COVERAGE`
+- [x] `CMAKE_EXPORT_COMPILE_COMMANDS ON`
+- [x] Hello `sc_module` in `model/views/cycle_accurate/`
+- [x] Smoke test passes: `make prepare-tools && cmake -B build && cmake --build build && ctest --test-dir build`
+- [x] Generic `AGENTS.md` + `docs/agents/GETTING_STARTED.md`
 - [ ] Tag e.g. `v0.1.0`
 - [ ] Enable "Template repository" on GitHub
 
-## Implementation order (suggested commits)
+## Using this template
 
-1. **Docs + layout** — README, PLANNING.md, AGENTS.md, directory placeholders, .gitignore
-2. **Makefile + devcontainer** — systemc target, ubuntu-24.04 image
-3. **CMake + hello model + smoke test** — remove root main.cpp pattern
-4. **Verify in devcontainer** — full prepare-tools → ctest flow
-
-## After template is ready
-
-1. Enable GitHub "Template repository" on systemc-devenv
-2. Recreate spi-systemc-model via "Use this template"
-3. First commits in spi-systemc-model: `docs/PRIME_DIRECTIVE.md`, `todo/*`, spec skeleton
+1. Enable **"Template repository"** on GitHub (if maintaining the template itself)
+2. Create your product repo via **"Use this template"**
+3. Add IP-specific docs, specs, models, and tests in the new repo
 
 ## Provenance
 

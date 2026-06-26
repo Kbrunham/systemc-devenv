@@ -38,7 +38,7 @@ model/views/
 verification/systemc/smoke/   # GTest smoke test
 ```
 
-Planning notes and locked decisions: [docs/PLANNING.md](docs/PLANNING.md).
+Locked decisions and milestones: [docs/PLANNING.md](docs/PLANNING.md).
 
 ## License
 

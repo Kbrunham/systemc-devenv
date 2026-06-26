@@ -81,5 +81,5 @@ Built artifacts: remove `build/` manually or use a fresh build directory.
 
 ## Next steps
 
-- Read [PLANNING.md](../PLANNING.md) for template scope and milestones
-- Fork via GitHub "Use this template" for product-specific models
+- Read [PLANNING.md](../PLANNING.md) for locked decisions and template milestones
+- Create a new repo via GitHub **"Use this template"** for your IP model

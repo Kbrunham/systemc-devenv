@@ -6,11 +6,11 @@ Open a new Cursor chat, copy the block below, and send it as your first message.
 Read these files to get up to speed with this repo:
 
 1. AGENTS.md — scope, locked choices, where code lives
-2. docs/PLANNING.md — milestones and structural decisions
+2. docs/PLANNING.md — locked decisions and template milestones
 3. docs/agents/GETTING_STARTED.md — build flow and conventions
 
 This is **systemc-devenv**, a generic SystemC development template (not a product IP repo).
-Do not add SPI specs, REQ- IDs, or other domain-specific content here.
+Do not add product specs, requirement IDs, or other domain-specific IP content here.
 
 Locked stack (do not change without updating PLANNING.md):
 - SystemC 3.0.2 → ./systemc (make systemc)
