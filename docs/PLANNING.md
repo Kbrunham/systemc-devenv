@@ -35,9 +35,9 @@ That content belongs in **spi-systemc-model**, not here (except generic patterns
 | SystemC | **3.0.2** — Makefile fetch/build, install prefix `$(REPO_ROOT)/systemc` |
 | Boost | **1.86.0** — same Makefile pattern as cpp-devenv, prefix `$(REPO_ROOT)/boost` |
 | C++ standard | **C++17** |
-| CMake (tool) | Use CMake from devcontainer image (Ubuntu 26.04 → **4.2.3**) |
+| CMake (tool) | Use CMake from devcontainer image (Ubuntu 24.04 → **3.28**) |
 | `cmake_minimum_required` | **3.24** (do not require 4.x in project CMakeLists) |
-| DevContainer base | `mcr.microsoft.com/devcontainers/cpp:3-ubuntu26.04` |
+| DevContainer base | `mcr.microsoft.com/devcontainers/cpp:ubuntu-24.04` |
 | Tests | GoogleTest (in-tree `extern/googletest`) |
 | Coverage | Optional `ENABLE_COVERAGE` (gcov/lcov), documented |
 | Primary model style | `sc_module` + signals (cycle-accurate view) |
@@ -81,7 +81,7 @@ systemc-devenv/
 ├── verification/
 │   └── systemc/smoke/                # GTest smoke test
 ├── extern/                           # googletest, cmake_helpers (from cpp-devenv)
-└── .devcontainer/                    # ubuntu26.04, postCreateCommand
+└── .devcontainer/                    # ubuntu-24.04, postCreateCommand
 ```
 
 Remove or relocate cpp-devenv sample `main.cpp` / `test_main.cpp` at repo root.
@@ -91,7 +91,7 @@ Remove or relocate cpp-devenv sample `main.cpp` / `test_main.cpp` at repo root.
 - [ ] README renamed for systemc-devenv
 - [ ] Makefile: `systemc` target + `prepare-tools` includes systemc
 - [ ] `.gitignore`: systemc/, boost/, work/, venv/
-- [ ] Devcontainer: `3-ubuntu26.04`, `postCreateCommand: make prepare-tools`
+- [ ] Devcontainer: `ubuntu-24.04`, `postCreateCommand: make prepare-tools`
 - [ ] CMake: find SystemC, build model lib/exe, GTest smoke test, `ENABLE_COVERAGE`
 - [ ] `CMAKE_EXPORT_COMPILE_COMMANDS ON`
 - [ ] Hello `sc_module` in `model/views/cycle_accurate/`
@@ -103,7 +103,7 @@ Remove or relocate cpp-devenv sample `main.cpp` / `test_main.cpp` at repo root.
 ## Implementation order (suggested commits)
 
 1. **Docs + layout** — README, PLANNING.md, AGENTS.md, directory placeholders, .gitignore
-2. **Makefile + devcontainer** — systemc target, ubuntu26.04 image
+2. **Makefile + devcontainer** — systemc target, ubuntu-24.04 image
 3. **CMake + hello model + smoke test** — remove root main.cpp pattern
 4. **Verify in devcontainer** — full prepare-tools → ctest flow
 

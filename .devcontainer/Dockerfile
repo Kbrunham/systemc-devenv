@@ -1,5 +1,5 @@
-# Locked base per docs/PLANNING.md (devcontainers/cpp 3.x, Ubuntu 26.04).
-FROM mcr.microsoft.com/devcontainers/cpp:3-ubuntu26.04
+# Locked base per docs/PLANNING.md (devcontainers/cpp, Ubuntu 24.04).
+FROM mcr.microsoft.com/devcontainers/cpp:ubuntu-24.04
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get install -y --no-install-recommends python3-venv \
