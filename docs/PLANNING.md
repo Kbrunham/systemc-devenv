@@ -51,8 +51,8 @@ That content belongs in **spi-systemc-model**, not here (except generic patterns
 
 - `make boost` — download, build, install to `boost/`
 - `make systemc` — download Accellera 3.0.2, CMake build, install to `systemc/`
-- `make prepare-tools` — `venv` + `boost` + `systemc`
-- `postCreateCommand` in devcontainer: `make prepare-tools`
+- `make prepare-tools` — `venv` + `boost` + `systemc` (on demand; not run at container create)
+- `postCreateCommand` in devcontainer: `git safe.directory` only
 
 Gitignore: `boost/`, `systemc/`, `work/`, `venv/`, build dirs.
 
@@ -91,7 +91,7 @@ Remove or relocate cpp-devenv sample `main.cpp` / `test_main.cpp` at repo root.
 - [ ] README renamed for systemc-devenv
 - [ ] Makefile: `systemc` target + `prepare-tools` includes systemc
 - [ ] `.gitignore`: systemc/, boost/, work/, venv/
-- [ ] Devcontainer: `ubuntu-24.04`, `postCreateCommand: make prepare-tools`
+- [ ] Devcontainer: `ubuntu-24.04`, deps built on demand (not in `postCreateCommand`)
 - [ ] CMake: find SystemC, build model lib/exe, GTest smoke test, `ENABLE_COVERAGE`
 - [ ] `CMAKE_EXPORT_COMPILE_COMMANDS ON`
 - [ ] Hello `sc_module` in `model/views/cycle_accurate/`
