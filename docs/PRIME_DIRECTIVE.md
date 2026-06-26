@@ -1,71 +1,77 @@
-# Prime directive — systemc-devenv
+# Prime directive
 
-This document is the canonical statement of **why this repository exists** and **how
-agents and developers should use it**. Read this before making changes.
+> TEMPLATE NOTE: This repository is `systemc-devenv`, the reusable SystemC template.
+> While working in this upstream template, make only template infrastructure changes and
+> do not add product/IP content. After creating a product repo with GitHub
+> **"Use this template"**, delete this note or replace it with the concrete IP/block
+> name and remove template-only wording.
+
+This document is the canonical statement of why this repository exists and how agents
+and developers should use it. Read this before making changes.
 
 ## Mission
 
-This repository provides a **reproducible foundation** for SystemC model development:
-pinned dependencies, directory layout, build and test flow, and agent conventions.
+This repository maintains a synchronized executable specification for one concrete
+IP/block:
 
-It is the **starting point** for product repositories (for example, `spi-systemc-model`),
-not the product itself.
+- the Markdown specification states the intended behavior
+- the SystemC model implements that behavior
+- the verification tests check that behavior
 
-Success here means: anyone can clone the repo, run the standard build sequence, and have
-a working SystemC modeling workspace with clear patterns to extend.
+Success means spec, model, and tests describe the same behavior. When they do not,
+record the gap explicitly until all three agree.
 
-## What success looks like in this repo
+For upstream `systemc-devenv`, this file is a product-repo scaffold. The upstream
+template mission is to provide the pinned dependencies, build/test flow, directory
+layout, and agent conventions that product repos inherit.
+
+## What success looks like
 
 - `make prepare-tools && cmake -B build && cmake --build build && ctest --test-dir build` passes
-- New models live under `model/views/<timing_view>/`
-- New tests live under `verification/systemc/`
-- The repository stays **IP-agnostic** — no product specifications, no `REQ-` requirement
-  IDs, no product-specific `todo/` content
-- Changes keep the template self-consistent (build, smoke test, and docs agree)
+- Product specifications live under the repo's documented spec location
+- Models live under `model/views/<timing_view>/`
+- Tests live under `verification/systemc/`
+- Requirement IDs, test plans, and gap tracking are kept consistent with the product
+  repo's conventions
+- Changes keep specification, implementation, tests, and documentation aligned
 
-## Template vs product repository
+## Product repository setup
 
-| In this repo (template) | In a product repo (created via "Use this template") |
-|-------------------------|-----------------------------------------------------|
-| Makefile deps, devcontainer, CMake patterns | IP specification (`docs/spec/`) |
-| Generic agent and developer documentation | Product `docs/PRIME_DIRECTIVE.md` (executable spec rules) |
-| Hello-world model and smoke test | Real model and requirement tests |
-| `docs/PLANNING.md` (template technical decisions) | `todo/ARCHITECTURAL.md`, `REQ-` traceability, test plan |
+After creating a product repo from this template:
 
-See [TEMPLATE_VS_PRODUCT.md](TEMPLATE_VS_PRODUCT.md) for a fuller comparison.
+1. Delete or replace the template note at the top of this file and
+   [../AGENTS.md](../AGENTS.md) with the concrete IP/block name.
+2. Define the product scope and specification location.
+3. Define requirement ID and traceability conventions, if used.
+4. Define where architectural gaps and deferred work are tracked.
+5. Replace the hello-world model and smoke test with product behavior and tests.
 
-A product repository maintains **two synchronized views of the same IP**: a human-readable
-Markdown specification and an executable SystemC model, with tests as the bridge. That
-workflow is defined in the **product repo's** prime directive, not here.
+## Upstream template boundary
 
-## Agent rules when working in this repo
+In upstream `systemc-devenv`, do not add product-specific content. Keep changes limited
+to reusable template infrastructure and patterns:
 
-1. **Extend infrastructure and patterns**, not domain IP behavior.
-2. Model changes here are **examples and patterns** (e.g. hello-world), not product logic.
-3. A single change may touch CMake, model, and tests when keeping the template consistent.
-4. Do not add product specs, requirement IDs, or architectural TODOs for a specific IP.
-5. Locked toolchain versions change only by updating [PLANNING.md](PLANNING.md) with justification.
-6. Verify with the standard build sequence before considering work complete.
-7. Before starting, decide: is this **template infrastructure** (allowed here) or **product IP**
-   (belongs in a derived repository)?
+- Makefile dependency flow
+- DevContainer and CMake patterns
+- generic example models and smoke tests
+- reusable agent and developer documentation
 
-## Agent rules when working in a product repository
+Product-specific specs, `REQ-` IDs, protocol behavior, product test plans, and
+architectural TODOs belong in a repo created from this template.
 
-1. Read **that repository's** `docs/PRIME_DIRECTIVE.md` first — not this file alone.
-2. Keep specification, model, and tests aligned; record gaps in that repo's `todo/ARCHITECTURAL.md`.
-3. Do not copy product-specific spec or model content back into systemc-devenv.
+See [TEMPLATE_VS_PRODUCT.md](TEMPLATE_VS_PRODUCT.md) for the upstream template/product
+repo distinction.
 
-## Downstream workflow
+## Agent rules
 
-```
-systemc-devenv (template)
-    → GitHub "Use this template"
-    → product repo (e.g. spi-systemc-model)
-    → add product PRIME_DIRECTIVE, spec skeleton, model, tests
-```
-
-When the template reaches a milestone, tag a release and enable **Template repository**
-on GitHub so product repos can be created from a known-good baseline.
+1. Before starting, state whether the work is template infrastructure or product/IP work.
+2. In upstream `systemc-devenv`, extend infrastructure and patterns only.
+3. In a product repo, keep specification, model, and tests aligned.
+4. Record unresolved spec/model/test gaps in the product repo's documented gap tracker.
+5. A single change may touch docs, model, tests, and build files when needed to keep
+   the repository consistent.
+6. Locked toolchain versions change only by updating [PLANNING.md](PLANNING.md) with justification.
+7. Verify with the standard build sequence before considering work complete.
 
 ## Related documentation
 

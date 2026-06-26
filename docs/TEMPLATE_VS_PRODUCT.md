@@ -30,7 +30,7 @@ inherit via "Use this template."
 
 **Prime directive:** Maintain synchronized **Markdown specification** and **SystemC model**,
 with **tests** as the executable check. When spec, model, or tests disagree, record the
-gap in `todo/ARCHITECTURAL.md` until all three agree.
+gap in the product repo's documented gap tracker until all three agree.
 
 **Typical changes:**
 
@@ -39,6 +39,7 @@ gap in `todo/ARCHITECTURAL.md` until all three agree.
 - Tests mapped to requirements (`REQ-…`) in `verification/` and `docs/test-plan/`
 - Architectural and development TODOs under `todo/`
 - Product-specific `docs/PRIME_DIRECTIVE.md`
+- Product-specific replacement for the template note in `AGENTS.md`
 
 **Inherits from template:**
 

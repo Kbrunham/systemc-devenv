@@ -16,6 +16,27 @@ Read **[docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md)** for the full mission
 belongs here vs in a product repo, and how agents should work. See also
 [docs/TEMPLATE_VS_PRODUCT.md](docs/TEMPLATE_VS_PRODUCT.md).
 
+## Using this as a template
+
+1. Click GitHub **"Use this template"** and create a new repository for the IP/block.
+2. Rename project-facing text from `systemc-devenv` to the new repo/IP name.
+3. Delete or replace the `TEMPLATE NOTE` headers in [AGENTS.md](AGENTS.md) and
+   [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md) with the concrete IP/block scope.
+4. Define where the product specification, requirement IDs, test plan, and architectural
+   gap tracking live.
+5. Replace the hello-world model and smoke test with product model behavior and tests.
+6. Run the standard build:
+
+```bash
+make prepare-tools
+cmake -B build
+cmake --build build
+ctest --test-dir build
+```
+
+After these steps, the new repo's prime directive is to keep the Markdown specification,
+SystemC model, and verification tests synchronized.
+
 ## What's included
 
 - **SystemC 3.0.2** — Makefile fetch/build, install prefix `./systemc`

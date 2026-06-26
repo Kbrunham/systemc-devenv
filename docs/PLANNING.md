@@ -92,6 +92,7 @@ systemc-devenv/
 - [x] Smoke test passes: `make prepare-tools && cmake -B build && cmake --build build && ctest --test-dir build`
 - [x] Generic `AGENTS.md` + `docs/agents/GETTING_STARTED.md`
 - [x] `docs/PRIME_DIRECTIVE.md` + `docs/TEMPLATE_VS_PRODUCT.md`
+- [x] Product-repo scaffold notes in `AGENTS.md` and `docs/PRIME_DIRECTIVE.md`
 - [ ] Tag e.g. `v0.1.0`
 - [ ] Enable "Template repository" on GitHub
 
