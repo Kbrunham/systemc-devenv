@@ -3,6 +3,11 @@
 This repository is a **SystemC development template**, not a product IP repo.
 Do not add SPI or other domain-specific content here.
 
+## New chat
+
+Copy the prompt from [docs/agents/CHAT_INIT.md](docs/agents/CHAT_INIT.md) into a
+fresh Cursor chat to initialize the session.
+
 ## Read first
 
 1. [docs/PLANNING.md](docs/PLANNING.md) — locked decisions and milestone checklist

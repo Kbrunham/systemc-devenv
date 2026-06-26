@@ -24,8 +24,9 @@ ctest --test-dir build
 ```
 
 See [docs/developer/getting-started.md](docs/developer/getting-started.md) for local
-setup details and [docs/agents/GETTING_STARTED.md](docs/agents/GETTING_STARTED.md)
-for agent-oriented guidance.
+setup details. For Cursor agents: copy the prompt from
+[docs/agents/CHAT_INIT.md](docs/agents/CHAT_INIT.md) into a new chat, or read
+[docs/agents/GETTING_STARTED.md](docs/agents/GETTING_STARTED.md) for reference.
 
 ## Directory layout
 
