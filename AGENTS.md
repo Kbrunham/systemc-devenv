@@ -1,7 +1,13 @@
-# Agent guide — systemc-devenv
+# Agent guide
 
-**Read first:** [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md) — why this repo exists,
-what belongs here vs in a product repo, and how agents should work.
+> TEMPLATE NOTE: This repository is `systemc-devenv`, the reusable SystemC template.
+> While working in this upstream template, make only template infrastructure changes and
+> do not add product/IP content. After creating a product repo with GitHub
+> **"Use this template"**, delete this note or replace it with the concrete IP/block
+> name and remove template-only wording.
+
+**Read first:** [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md) — repository mission,
+scope, and agent rules.
 
 ## New chat
 
@@ -11,9 +17,31 @@ fresh agent chat to initialize the session.
 ## Read order
 
 1. [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md) — mission, scope, agent rules
-2. [docs/PLANNING.md](docs/PLANNING.md) — locked technical decisions and milestones
+2. [docs/PLANNING.md](docs/PLANNING.md) — technical decisions and milestones
 3. [docs/agents/GETTING_STARTED.md](docs/agents/GETTING_STARTED.md) — build flow and layout
-4. [docs/TEMPLATE_VS_PRODUCT.md](docs/TEMPLATE_VS_PRODUCT.md) — when work belongs here vs downstream
+4. [docs/TEMPLATE_VS_PRODUCT.md](docs/TEMPLATE_VS_PRODUCT.md) — upstream template reference
+
+## Before starting any task
+
+Classify the work and state the classification before making changes:
+
+- **Template infrastructure:** build flow, dependency setup, generic examples, CMake
+  patterns, smoke tests, reusable documentation, and agent/developer guidance.
+- **Product/IP work:** product specs, real block behavior, `REQ-` IDs, product test
+  plans, architectural TODOs, protocol-specific features, and product traceability rules.
+
+In upstream `systemc-devenv`, only template infrastructure belongs here. In a product
+repo created from this template, product/IP work is expected and should keep the spec,
+model, and tests synchronized.
+
+## Product repo prime directive
+
+Maintain a synchronized executable specification for one concrete IP/block:
+
+- the Markdown specification states the intended behavior
+- the SystemC model implements that behavior
+- the verification tests check that behavior
+- unresolved gaps between spec, model, and tests are tracked explicitly
 
 ## Locked choices (do not change without updating PLANNING.md)
 
@@ -43,7 +71,8 @@ ctest --test-dir build
 
 ## Scope boundaries
 
-- **Template infrastructure only** — see [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md)
-- No product specs, `REQ-` IDs, or product `todo/` content
+- In upstream `systemc-devenv`: template infrastructure only
+- In a product repo: delete or replace the template note, define the concrete IP scope,
+  and add product specs, requirement IDs, tests, and architectural TODOs as needed
 - CI (`.github/`) changes are deferred unless trivial
 - Ask before large structural changes not listed in PLANNING.md

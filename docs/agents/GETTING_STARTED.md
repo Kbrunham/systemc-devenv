@@ -5,8 +5,9 @@
 Full mission, scope, and agent rules: **[../PRIME_DIRECTIVE.md](../PRIME_DIRECTIVE.md)**.
 
 **systemc-devenv** is a reusable template for SystemC model work. Create a product
-repository for your IP via GitHub **"Use this template"**. Product-specific executable-spec
-rules live in that repo's own `docs/PRIME_DIRECTIVE.md`, not here.
+repository for your IP via GitHub **"Use this template"**. After instantiating a product
+repo, delete or replace the template notes in `AGENTS.md` and
+`docs/PRIME_DIRECTIVE.md` with the concrete IP/block scope.
 
 Unsure where work belongs? See [../TEMPLATE_VS_PRODUCT.md](../TEMPLATE_VS_PRODUCT.md).
 
@@ -46,7 +47,8 @@ extern/cmake_helpers/         # project_add_test macro
 - **C++17**, `sc_module` + signals for cycle-accurate models
 - **CMake:** `cmake_minimum_required(VERSION 3.24)`, `CMAKE_EXPORT_COMPILE_COMMANDS ON`
 - **Coverage:** `-DENABLE_COVERAGE=ON` for gcov/lcov (optional)
-- **Do not** add domain-specific specs, `REQ-` IDs, or product TODOs — see [PRIME_DIRECTIVE.md](../PRIME_DIRECTIVE.md)
+- In upstream `systemc-devenv`, do not add domain-specific specs, `REQ-` IDs, or product TODOs
+- In a product repo, add those artifacts according to that repo's prime directive
 
 ## Style
 
