@@ -49,6 +49,7 @@ SystemC model, and verification tests synchronized.
 - **Product scaffolds** — `docs/spec/`, `docs/gaps/`, `docs/upstream/`
 - **Architectural Review Agent** — `docs/agents/ARCHITECTURAL_REVIEW.md`
 - **Model development stages** — `docs/agents/MODEL_DEVELOPMENT_STAGES.md`
+- **Optional Confluence import** — `docs/spec/import/`, `docs/agents/CONFLUENCE_SYNC.md`
 
 ## Quick start
 

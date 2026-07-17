@@ -169,6 +169,14 @@ style-format-clang: $(VENV_STAMP)
 
 
 ###############################################################################
+#                    Optional Confluence spec import
+###############################################################################
+.PHONY: import-spec-images
+import-spec-images:
+	python3 tools/import_confluence_images.py
+
+
+###############################################################################
 #                                HELP
 ###############################################################################
 .PHONY: help
@@ -181,6 +189,7 @@ help:
 	$(info test           Build then run ctest (default goal))
 	$(info all            Same as test)
 	$(info)
+	$(info import-spec-images   Optional: download Confluence diagrams (needs API env + manifest))
 	$(info style-format-clang   Apply .clang-format)
 	$(info style-check-clang    Verify formatting (CI))
 	$(info clean                Remove venv, boost, systemc, work/, .stamps/)

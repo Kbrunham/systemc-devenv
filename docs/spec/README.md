@@ -14,15 +14,24 @@ model and verification tests implement and check that intent.
 | Path | Role |
 |------|------|
 | `docs/spec/README.md` | This file — source-of-truth policy, REQ-ID convention, navigation |
-| `docs/spec/…` | Architecture, behavior, interfaces, registers, rationale (as needed) |
+| `docs/spec/overview.md` | Scope / introduction index |
+| `docs/spec/architecture/` | Hierarchy → SystemC module map |
+| `docs/spec/behavior/` | Sequences, reset, power |
+| `docs/spec/interfaces/` | Ports / protocols |
+| `docs/spec/registers/` | Register / address map |
+| `docs/spec/rationale/` | Provenance (`source.md`), PPA, design rationale |
 
-Optional patterns used by some product repos:
+### Optional: Confluence import mirror
 
-- **Import mirror** — versioned snapshots of an external HAS (e.g. Confluence) under
-  `docs/spec/import/`, with section indexes that link into the mirror rather than
-  duplicating prose.
-- **Section indexes** — stable navigation and `REQ-…` assignment without copying the
-  authoritative specification text.
+When the authoritative HAS lives in Confluence, use a two-layer layout:
+
+| Path | Role |
+|------|------|
+| [`import/`](import/) | Exact Confluence snapshots — `{pageId}-{slug}.md`; **import-only** |
+| Section indexes (above) | Links into `import/`, `REQ-…` IDs, model/test pointers — **no duplicated prose** |
+
+Runbook: [../agents/CONFLUENCE_SYNC.md](../agents/CONFLUENCE_SYNC.md). Page map:
+[rationale/source.md](rationale/source.md).
 
 ## Requirement IDs
 
@@ -46,3 +55,5 @@ Reference IDs in:
 - [../PRIME_DIRECTIVE.md](../PRIME_DIRECTIVE.md) — mission and agent rules
 - [../gaps/GAPS.md](../gaps/GAPS.md) — divergence tracker
 - [../upstream/README.md](../upstream/README.md) — feeding template improvements upstream
+- [../agents/CONFLUENCE_SYNC.md](../agents/CONFLUENCE_SYNC.md) — optional Confluence import runbook
+- [../agents/MODEL_DEVELOPMENT_STAGES.md](../agents/MODEL_DEVELOPMENT_STAGES.md) — Stage 1 spec baseline

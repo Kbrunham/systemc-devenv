@@ -86,10 +86,38 @@ Log persistent divergence in docs/gaps/GAPS.md. State whether this is a PR revie
 periodic repository review.
 ```
 
+## Confluence spec sync (optional)
+
+Use when the product HAS lives in Confluence and you adopt `docs/spec/import/`.
+
+```
+Perform a Confluence spec sync into docs/spec/import/.
+
+Read and follow docs/agents/CONFLUENCE_SYNC.md end-to-end before making changes.
+
+Also read:
+- docs/spec/rationale/source.md — page map, import phases, ignored pages
+- docs/spec/import/SNAPSHOT.md — latest snapshot ID and provenance format
+- docs/spec/import/README.md — import mirror rules and file headers
+
+Prerequisites:
+- Atlassian MCP authenticated in Cursor (getConfluencePage, searchConfluenceUsingCql)
+- Product configuration filled in CONFLUENCE_SYNC.md (site, space, root page ID)
+- For diagrams: CONFLUENCE_SITE + CONFLUENCE_EMAIL + CONFLUENCE_API_TOKEN, then make import-spec-images
+
+Do not import pages listed as ignored in docs/spec/rationale/source.md.
+
+When done, report: snapshot ID, UTC imported-at, pages synced (with Confluence version each),
+diagrams fetched, and files updated (SNAPSHOT.md, source.md, section indexes).
+
+Classify as Product/IP work. Record drift in docs/gaps/GAPS.md if Confluence and model/tests
+still disagree after import.
+```
+
 ## After pasting
 
-The agent should acknowledge its role (implementation vs architectural review), whether
-this checkout is the upstream template or a product repo, and classify planned work.
-For ongoing reference, see [GETTING_STARTED.md](GETTING_STARTED.md),
-[ARCHITECTURAL_REVIEW.md](ARCHITECTURAL_REVIEW.md),
+The agent should acknowledge its role (implementation vs architectural review vs Confluence
+sync), whether this checkout is the upstream template or a product repo, and classify
+planned work. For ongoing reference, see [GETTING_STARTED.md](GETTING_STARTED.md),
+[ARCHITECTURAL_REVIEW.md](ARCHITECTURAL_REVIEW.md), [CONFLUENCE_SYNC.md](CONFLUENCE_SYNC.md),
 [PRIME_DIRECTIVE.md](../PRIME_DIRECTIVE.md), and [AGENTS.md](../../AGENTS.md).

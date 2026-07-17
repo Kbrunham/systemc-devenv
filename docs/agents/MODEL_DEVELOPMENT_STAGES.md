@@ -169,6 +169,7 @@ keep Layer A correct before deep behavior work.
 
 - [GETTING_STARTED.md](GETTING_STARTED.md) — build and layout
 - [ARCHITECTURAL_REVIEW.md](ARCHITECTURAL_REVIEW.md) — consistency review
+- [CONFLUENCE_SYNC.md](CONFLUENCE_SYNC.md) — optional Confluence import (if used)
 - [../PLANNING.md](../PLANNING.md) — product milestones (customize after Use this template)
 - [../spec/README.md](../spec/README.md) — specification conventions
 - [../gaps/GAPS.md](../gaps/GAPS.md) — divergence tracker

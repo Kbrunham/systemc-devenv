@@ -15,7 +15,7 @@ Copy a prompt from [docs/agents/CHAT_INIT.md](docs/agents/CHAT_INIT.md):
 
 - **Implementation work** — default init prompt
 - **Architectural review** — PR or periodic review prompt
-
+- **Confluence spec sync** — optional; when HAS is mirrored from Confluence
 ## Read order
 
 1. [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md) — mission, scope, agent rules
