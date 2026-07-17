@@ -28,6 +28,8 @@ Classify the work and state the classification before making changes:
   patterns, smoke tests, reusable documentation, and agent/developer guidance.
 - **Product/IP work:** product specs, real block behavior, `REQ-` IDs, product test
   plans, architectural TODOs, protocol-specific features, and product traceability rules.
+- **Upstream feedback:** reusable learnings discovered in a product repo — log in
+  [docs/upstream/LEARNINGS.md](docs/upstream/LEARNINGS.md), then promote to the template.
 
 In upstream `systemc-devenv`, only template infrastructure belongs here. In a product
 repo created from this template, product/IP work is expected and should keep the spec,
@@ -53,11 +55,14 @@ Maintain a synchronized executable specification for one concrete IP/block:
 | DevContainer | `mcr.microsoft.com/devcontainers/cpp:ubuntu-24.04` |
 | Tests | GoogleTest in `extern/googletest` |
 
-## Where code lives
+## Where code / collateral lives
 
 - **Models:** `model/views/<timing_view>/` — use `sc_module` + signals in `cycle_accurate/`
 - **Tests:** `verification/systemc/` — GTest, discovered via CMake `project_add_test`
 - **Build:** root `CMakeLists.txt`, deps via root `Makefile`
+- **Specs (product repos):** `docs/spec/` — see [docs/spec/README.md](docs/spec/README.md)
+- **Gaps (product repos):** `docs/gaps/GAPS.md`
+- **Template learnings (product repos):** `docs/upstream/LEARNINGS.md`
 
 ## Verify changes
 
