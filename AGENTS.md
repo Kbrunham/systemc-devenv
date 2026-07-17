@@ -11,14 +11,18 @@ scope, and agent rules.
 
 ## New chat
 
-Copy the prompt from [docs/agents/CHAT_INIT.md](docs/agents/CHAT_INIT.md) into a
-fresh agent chat to initialize the session.
+Copy a prompt from [docs/agents/CHAT_INIT.md](docs/agents/CHAT_INIT.md):
+
+- **Implementation work** — default init prompt
+- **Architectural review** — PR or periodic review prompt
 
 ## Read order
 
 1. [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md) — mission, scope, agent rules
 2. [docs/PLANNING.md](docs/PLANNING.md) — technical decisions and milestones
 3. [docs/agents/GETTING_STARTED.md](docs/agents/GETTING_STARTED.md) — build flow and layout
+
+**Architectural review:** also read [docs/agents/ARCHITECTURAL_REVIEW.md](docs/agents/ARCHITECTURAL_REVIEW.md).
 
 ## Before starting any task
 
@@ -30,19 +34,22 @@ Classify the work and state the classification before making changes:
   plans, architectural TODOs, protocol-specific features, and product traceability rules.
 - **Upstream feedback:** reusable learnings discovered in a product repo — log in
   [docs/upstream/LEARNINGS.md](docs/upstream/LEARNINGS.md), then promote to the template.
+- **Architectural review:** consistency checks and drift detection — findings → PR comments
+  and/or [docs/gaps/GAPS.md](docs/gaps/GAPS.md).
 
 In upstream `systemc-devenv`, only template infrastructure belongs here. In a product
-repo created from this template, product/IP work is expected and should keep the spec,
-model, and tests synchronized.
+repo created from this template, product/IP work is expected and should keep engineering
+executable collateral synchronized.
 
 ## Product repo prime directive
 
-Maintain a synchronized executable specification for one concrete IP/block:
+Maintain **engineering executable collateral** for one concrete IP/block
+([Specification-First Engineering](docs/PRIME_DIRECTIVE.md)):
 
-- the Markdown specification states the intended behavior
-- the SystemC model implements that behavior
-- the verification tests check that behavior
-- unresolved gaps between spec, model, and tests are tracked explicitly
+- the written specification defines engineering intent
+- the SystemC model is the executable realization of that intent
+- verification and other collateral validate and communicate that intent
+- unresolved divergence is tracked in [docs/gaps/GAPS.md](docs/gaps/GAPS.md)
 
 ## Locked choices (do not change without updating PLANNING.md)
 

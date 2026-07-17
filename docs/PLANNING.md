@@ -71,7 +71,8 @@ systemc-devenv/
 │   ├── developer/getting-started.md
 │   └── agents/
 │       ├── GETTING_STARTED.md
-│       └── CHAT_INIT.md
+│       ├── CHAT_INIT.md
+│       └── ARCHITECTURAL_REVIEW.md   # review agent instructions
 ├── model/
 │   └── views/
 │       ├── cycle_accurate/           # hello sc_module
@@ -97,6 +98,7 @@ systemc-devenv/
 - [x] `docs/PRIME_DIRECTIVE.md`
 - [x] Product-repo scaffold notes in `AGENTS.md` and `docs/PRIME_DIRECTIVE.md`
 - [x] Product-repo path scaffolds: `docs/spec/`, `docs/gaps/`, `docs/upstream/`
+- [x] Architectural Review Agent + Specification-First consistency docs
 - [ ] Tag e.g. `v0.1.0`
 - [ ] Enable "Template repository" on GitHub
 
@@ -107,6 +109,8 @@ systemc-devenv/
 3. Follow [PRIME_DIRECTIVE.md](PRIME_DIRECTIVE.md) product-repo setup (customize
    `docs/spec/`, use `docs/gaps/GAPS.md`, add `upstream` remote)
 4. Replace hello-world with IP-specific models and tests
+5. Use [agents/ARCHITECTURAL_REVIEW.md](agents/ARCHITECTURAL_REVIEW.md) for PR and
+   periodic consistency review
 
 ## Provenance
 

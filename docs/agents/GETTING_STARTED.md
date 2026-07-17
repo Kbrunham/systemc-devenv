@@ -4,10 +4,21 @@
 
 Full mission, scope, and agent rules: **[../PRIME_DIRECTIVE.md](../PRIME_DIRECTIVE.md)**.
 
-**systemc-devenv** is a reusable template for SystemC model work. Create a product
-repository for your IP via GitHub **"Use this template"**. After instantiating a product
-repo, delete or replace the template notes in `AGENTS.md` and
-`docs/PRIME_DIRECTIVE.md` with the concrete IP/block scope.
+**systemc-devenv** is a reusable template for SystemC model work using
+**Specification-First Engineering**. Create a product repository for your IP via GitHub
+**"Use this template"**. After instantiating a product repo, delete or replace the
+template notes in `AGENTS.md` and `docs/PRIME_DIRECTIVE.md` with the concrete IP/block
+scope.
+
+## Agent roles
+
+| Role | Instructions | Init prompt |
+|------|--------------|-------------|
+| Implementation | Build or change collateral | [CHAT_INIT.md](CHAT_INIT.md) — default block |
+| Architectural Review | PR or periodic consistency review | [CHAT_INIT.md](CHAT_INIT.md) — review block, [ARCHITECTURAL_REVIEW.md](ARCHITECTURAL_REVIEW.md) |
+
+Architectural reviewers reason across the full repository, not only diffs. See
+[ARCHITECTURAL_REVIEW.md](ARCHITECTURAL_REVIEW.md) for review output format and criteria.
 
 ## Build sequence
 
@@ -35,6 +46,7 @@ the Makefile defaults (CMakeLists sets sensible defaults relative to the repo ro
 docs/spec/README.md           # product spec scaffold (customize after Use this template)
 docs/gaps/GAPS.md             # divergence tracker scaffold
 docs/upstream/                # template feedback workflow + LEARNINGS log
+docs/agents/ARCHITECTURAL_REVIEW.md  # review agent instructions
 model/views/cycle_accurate/   # hello sc_module
 model/views/loosely_timed/    # stub
 model/views/approximately_timed/ # stub
@@ -50,6 +62,14 @@ extern/cmake_helpers/         # project_add_test macro
 | **Template infrastructure** | Makefile, DevContainer, generic CMake, hello-world, agent docs |
 | **Product/IP** | Specs under `docs/spec/`, model behavior, `REQ-` tests, gaps |
 | **Upstream feedback** | Reusable friction → `docs/upstream/LEARNINGS.md`, then PR the template |
+| **Architectural review** | PR consistency check, periodic drift audit — findings to GAPS or PR |
+
+## Consistency principles (summary)
+
+1. **Single engineering intent** — same decision everywhere it applies
+2. **Executable specification** — model implements spec; spec covers observable model behavior
+3. **Structural alignment** — SystemC hierarchy follows architecture, not RTL
+4. **No silent divergence** — log gaps in [../gaps/GAPS.md](../gaps/GAPS.md)
 
 ## Conventions
 
@@ -79,3 +99,4 @@ make style-check-clang    # verify (requires venv from prepare-tools)
 | [spec/README.md](../spec/README.md) | Product specification scaffold |
 | [gaps/GAPS.md](../gaps/GAPS.md) | Divergence tracker scaffold |
 | [upstream/README.md](../upstream/README.md) | Template feedback workflow |
+| [ARCHITECTURAL_REVIEW.md](ARCHITECTURAL_REVIEW.md) | Architectural Review Agent |

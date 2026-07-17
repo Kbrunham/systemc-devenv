@@ -12,13 +12,17 @@ rationale.
 Close gaps by updating all affected artifacts or by recording an explicit deferral with
 rationale.
 
+Architectural Review Agents should consult this file during periodic reviews and add
+entries for persistent divergence. See
+[../agents/ARCHITECTURAL_REVIEW.md](../agents/ARCHITECTURAL_REVIEW.md).
+
 ## Entry format
 
 ```markdown
 ### GAP-NNN — Short title
 
 - **Status:** open | in-progress | closed | deferred
-- **Confidence:** high | medium | low
+- **Confidence:** high | medium | low (review agent: likelihood this is real drift)
 - **Intentional:** yes | no | unknown
 - **REQ IDs:** REQ-… (if applicable)
 - **Spec:** path/to/spec.md#section or "missing"

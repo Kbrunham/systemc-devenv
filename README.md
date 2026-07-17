@@ -25,7 +25,9 @@ belongs here vs in a product repo, and how agents should work.
    [docs/gaps/GAPS.md](docs/gaps/GAPS.md) for divergence; add an `upstream` remote and see
    [docs/upstream/README.md](docs/upstream/README.md).
 5. Replace the hello-world model and smoke test with product model behavior and tests.
-6. Run the standard build:
+6. For PRs and periodic drift audits, use
+   [docs/agents/ARCHITECTURAL_REVIEW.md](docs/agents/ARCHITECTURAL_REVIEW.md).
+7. Run the standard build:
 
 ```bash
 make prepare-tools
@@ -45,6 +47,7 @@ SystemC model, and verification tests synchronized.
 - **CMake 3.24+** — model library, executable, smoke test, optional coverage
 - **DevContainer** — `mcr.microsoft.com/devcontainers/cpp:ubuntu-24.04`
 - **Product scaffolds** — `docs/spec/`, `docs/gaps/`, `docs/upstream/`
+- **Architectural Review Agent** — `docs/agents/ARCHITECTURAL_REVIEW.md`
 
 ## Quick start
 
