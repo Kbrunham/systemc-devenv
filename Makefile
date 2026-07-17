@@ -44,6 +44,21 @@ SYSTEMC_VERSION ?= 3.0.2
 SYSTEMC_HOME ?= $(REPO_ROOT_DIR)/systemc
 export SYSTEMC_HOME
 
+BUILD_DIR ?= build
+CMAKE ?= cmake
+CTEST ?= ctest
+
+# Explicit stamp files — each prep recipe must touch its stamp on success.
+STAMPS_DIR := $(REPO_ROOT_DIR)/.stamps
+VENV_STAMP := $(STAMPS_DIR)/venv.done
+BOOST_STAMP := $(STAMPS_DIR)/boost.done
+SYSTEMC_STAMP := $(STAMPS_DIR)/systemc.done
+BUILD_PREP_STAMP := $(STAMPS_DIR)/build-prep.done
+BUILD_PREP_INPUTS := Makefile requirements.txt
+
+# Re-run cmake configure when root CMake inputs change.
+CMAKE_INPUTS := CMakeLists.txt $(wildcard extern/cmake_helpers/*.cmake)
+
 ##############################################################################
 # Set default goal before any targets. The default goal here is "test"
 ##############################################################################
@@ -60,23 +75,34 @@ default: $(DEFAULT_TARGET)
 $(WORK_ROOT_DIR):
 	mkdir -p $(WORK_ROOT_DIR)
 
-venv:
-	python3 -m venv venv
+$(STAMPS_DIR):
+	mkdir -p $(STAMPS_DIR)
+
+$(VENV_STAMP): requirements.txt Makefile | $(STAMPS_DIR)
+	python3 -m venv $(VENV_DIR)
 	$(VENV_PIP_INSTALL) --upgrade pip
 	$(VENV_PIP_INSTALL) -r requirements.txt
+	@touch $@
 
-boost: |$(WORK_ROOT_DIR)
+.PHONY: venv
+venv: $(VENV_STAMP)
+
+$(BOOST_STAMP): Makefile | $(WORK_ROOT_DIR) $(STAMPS_DIR)
 	cd $(WORK_ROOT_DIR) && wget https://archives.boost.io/release/$(BOOST_VERSION)/source/boost_$(BOOST_VERSION_MOD).tar.bz2
 	cd $(WORK_ROOT_DIR) && tar --bzip2 -xf boost_$(BOOST_VERSION_MOD).tar.bz2
-	cd $(WORK_ROOT_DIR)/boost_$(BOOST_VERSION_MOD) && ./bootstrap.sh --prefix=$(REPO_ROOT_DIR)/boost
+	cd $(WORK_ROOT_DIR)/boost_$(BOOST_VERSION_MOD) && ./bootstrap.sh --prefix=$(BOOST_ROOTDIR)
 	cd $(WORK_ROOT_DIR)/boost_$(BOOST_VERSION_MOD) && ./b2 install \
 		--with-filesystem \
 		--with-regex \
 		--build-type=minimal \
 		--link=static
 	rm -rf $(WORK_ROOT_DIR)/boost_$(BOOST_VERSION_MOD) $(WORK_ROOT_DIR)/boost_$(BOOST_VERSION_MOD).tar.bz2
+	@touch $@
 
-systemc: |$(WORK_ROOT_DIR)
+.PHONY: boost
+boost: $(BOOST_STAMP)
+
+$(SYSTEMC_STAMP): Makefile | $(WORK_ROOT_DIR) $(STAMPS_DIR)
 	cd $(WORK_ROOT_DIR) && wget -q https://github.com/accellera-official/systemc/archive/refs/tags/$(SYSTEMC_VERSION).tar.gz -O systemc-$(SYSTEMC_VERSION).tar.gz
 	cd $(WORK_ROOT_DIR) && tar -xzf systemc-$(SYSTEMC_VERSION).tar.gz
 	cd $(WORK_ROOT_DIR)/systemc-$(SYSTEMC_VERSION) && cmake -B build \
@@ -86,19 +112,47 @@ systemc: |$(WORK_ROOT_DIR)
 		-DBUILD_SHARED_LIBS=OFF
 	cd $(WORK_ROOT_DIR)/systemc-$(SYSTEMC_VERSION)/build && cmake --build . -j$$(nproc) && cmake --install .
 	rm -rf $(WORK_ROOT_DIR)/systemc-$(SYSTEMC_VERSION) $(WORK_ROOT_DIR)/systemc-$(SYSTEMC_VERSION).tar.gz
+	@touch $@
 
+.PHONY: systemc
+systemc: $(SYSTEMC_STAMP)
 
 .PHONY: clean
 clean:
-	rm -rf venv $(WORK_ROOT_DIR)
+	rm -rf venv boost systemc $(WORK_ROOT_DIR) $(STAMPS_DIR)
 
 # Deep clean using git
 .PHONY: dev-clean
 dev-clean :
 	git clean -dfx --exclude=/.vscode --exclude=.lfsconfig
 
+# Using git
+.PHONY: dev-update
+dev-update :
+	git pull
+	git submodule update --init --recursive
+
 .PHONY: prepare-tools
-prepare-tools : venv boost systemc
+prepare-tools: $(BUILD_PREP_STAMP)
+
+$(BUILD_PREP_STAMP): $(BUILD_PREP_INPUTS) $(VENV_STAMP) $(BOOST_STAMP) $(SYSTEMC_STAMP)
+	@mkdir -p $(STAMPS_DIR)
+	@touch $@
+
+.PHONY: build-prep
+build-prep: $(BUILD_PREP_STAMP)
+
+.PHONY: build
+build: $(BUILD_PREP_STAMP) $(CMAKE_INPUTS)
+	$(CMAKE) -B $(BUILD_DIR)
+	$(CMAKE) --build $(BUILD_DIR)
+
+.PHONY: test
+test: build
+	$(CTEST) --test-dir $(BUILD_DIR)
+
+.PHONY: all
+all: test
 
 ##############################################################################
 # Style checks
@@ -106,11 +160,11 @@ prepare-tools : venv boost systemc
 CLANG_CHECK_FILES := $(shell git ls-files *.c *.cpp *.h *.hpp)
 
 .PHONY: style-check-clang
-style-check-clang: |venv
+style-check-clang: $(VENV_STAMP)
 	$(VENV_CLANG_FORMAT) --dry-run --Werror  $(CLANG_CHECK_FILES)
 
 .PHONY: style-format-clang
-style-format-clang: |venv
+style-format-clang: $(VENV_STAMP)
 	$(VENV_CLANG_FORMAT) -style=file -i $(CLANG_CHECK_FILES)
 
 
@@ -119,6 +173,15 @@ style-format-clang: |venv
 ###############################################################################
 .PHONY: help
 help:
-	$(info Build)
-	$(info ----------------)
-	$(info ALL Targets : all)
+	$(info Common targets)
+	$(info --------------)
+	$(info build-prep     Ensure deps (venv, boost, systemc); reruns if Makefile/requirements change)
+	$(info prepare-tools  Same as build-prep (legacy alias))
+	$(info build          build-prep + cmake configure/compile ($(BUILD_DIR)/))
+	$(info test           Build then run ctest (default goal))
+	$(info all            Same as test)
+	$(info)
+	$(info style-format-clang   Apply .clang-format)
+	$(info style-check-clang    Verify formatting (CI))
+	$(info clean                Remove venv, boost, systemc, work/, .stamps/)
+	$(info dev-clean            git clean -dfx (destructive))

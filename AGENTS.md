@@ -74,11 +74,9 @@ Maintain **engineering executable collateral** for one concrete IP/block
 ## Verify changes
 
 ```bash
-make prepare-tools
-cmake -B build
-cmake --build build
-ctest --test-dir build
-make style-check-clang   # requires venv from prepare-tools
+make build-prep   # or: make prepare-tools
+make test         # default goal: configure, build, ctest
+make style-check-clang   # requires venv from build-prep
 ```
 
 Any C/C++ files you add or edit must pass `make style-check-clang` before submission.

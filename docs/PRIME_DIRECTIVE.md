@@ -50,7 +50,7 @@ Full review criteria and agent instructions:
 
 ## What success looks like
 
-- `make prepare-tools && cmake -B build && cmake --build build && ctest --test-dir build` passes
+- `make build-prep && make test` passes (alias: `make prepare-tools` then cmake/ctest)
 - Product specifications live under [spec/](spec/) (see [spec/README.md](spec/README.md))
 - Models live under `model/views/<timing_view>/`
 - Tests live under `verification/systemc/`

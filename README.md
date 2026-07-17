@@ -30,11 +30,11 @@ belongs here vs in a product repo, and how agents should work.
 7. Run the standard build:
 
 ```bash
-make prepare-tools
-cmake -B build
-cmake --build build
-ctest --test-dir build
+make build-prep
+make test
 ```
+
+Or: `make` (default goal is `test`).
 
 After these steps, the new repo's prime directive is to keep the Markdown specification,
 SystemC model, and verification tests synchronized.
@@ -52,10 +52,8 @@ SystemC model, and verification tests synchronized.
 ## Quick start
 
 ```bash
-make prepare-tools
-cmake -B build
-cmake --build build
-ctest --test-dir build
+make build-prep
+make test
 ```
 
 See [docs/developer/getting-started.md](docs/developer/getting-started.md) for local
