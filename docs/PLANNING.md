@@ -45,9 +45,11 @@ This template provides:
 
 - `make boost` — download, build, install to `boost/`
 - `make systemc` — download Accellera 3.0.2, CMake build, install to `systemc/`
-- `make prepare-tools` — `venv` + `boost` + `systemc` (on demand; not run at container create)
+- `make build-prep` / `make prepare-tools` — `venv` + `boost` + `systemc` via `.stamps/`
+  (on demand; not run at container create)
+- `make build` / `make test` — cmake configure/compile and ctest (default goal: `test`)
 
-Gitignore: `boost/`, `systemc/`, `work/`, `venv/`, build dirs.
+Gitignore: `boost/`, `systemc/`, `work/`, `venv/`, `.stamps/`, build dirs.
 
 Environment for CMake:
 
@@ -88,12 +90,13 @@ systemc-devenv/
 
 - [x] README renamed for systemc-devenv
 - [x] Makefile: `systemc` target + `prepare-tools` includes systemc
-- [x] `.gitignore`: systemc/, boost/, work/, venv/
+- [x] Makefile: stamp-based `build-prep` / `build` / `test` (default goal)
+- [x] `.gitignore`: systemc/, boost/, work/, venv/, .stamps/
 - [x] Devcontainer: `ubuntu-24.04`, deps built on demand
 - [x] CMake: find SystemC, build model lib/exe, GTest smoke test, `ENABLE_COVERAGE`
 - [x] `CMAKE_EXPORT_COMPILE_COMMANDS ON`
 - [x] Hello `sc_module` in `model/views/cycle_accurate/`
-- [x] Smoke test passes: `make prepare-tools && cmake -B build && cmake --build build && ctest --test-dir build`
+- [x] Smoke test passes: `make build-prep && make test`
 - [x] Generic `AGENTS.md` + `docs/agents/GETTING_STARTED.md`
 - [x] `docs/PRIME_DIRECTIVE.md`
 - [x] Product-repo scaffold notes in `AGENTS.md` and `docs/PRIME_DIRECTIVE.md`

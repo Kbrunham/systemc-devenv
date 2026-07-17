@@ -10,18 +10,19 @@
 
 1. Open the repo in VS Code / Cursor with Dev Containers
 2. Image: `mcr.microsoft.com/devcontainers/cpp:ubuntu-24.04`
-3. Run `make prepare-tools` (or individual `make` targets) when you first need dependencies
+3. Run `make build-prep` (or `make prepare-tools`) when you first need dependencies
 
 ## Local setup
 
 From the repository root:
 
 ```bash
-make prepare-tools
-cmake -B build
-cmake --build build
-ctest --test-dir build
+make build-prep
+make test
 ```
+
+Or step by step: `make build` then `ctest --test-dir build`. The default `make` goal is
+`test`.
 
 ### Dependencies
 
@@ -73,11 +74,12 @@ genhtml coverage.info --output-directory coverage-html
 ## Clean
 
 ```bash
-make clean          # removes venv/ and work/
+make clean          # removes venv/, boost/, systemc/, work/, .stamps/
 make dev-clean      # git clean -dfx (destructive; keeps .vscode)
 ```
 
-Built artifacts: remove `build/` manually or use a fresh build directory.
+Built artifacts: remove `build/` manually or use a fresh build directory. `make clean`
+also removes local dependency installs.
 
 ## Next steps
 

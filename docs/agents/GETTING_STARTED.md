@@ -23,13 +23,13 @@ Architectural reviewers reason across the full repository, not only diffs. See
 ## Build sequence
 
 ```bash
-make prepare-tools   # venv + boost + systemc (first time; network required)
-cmake -B build
-cmake --build build
-ctest --test-dir build
+make build-prep   # first time / when Makefile or requirements.txt change (network)
+make build        # cmake configure + compile
+make test         # build + ctest (also the default: `make`)
 ```
 
-`prepare-tools` installs pinned dependencies into the repo root:
+`build-prep` (alias: `prepare-tools`) installs pinned dependencies into the repo root
+using stamp files under `.stamps/` so successful installs are not rebuilt every run:
 
 | Target | Output |
 |--------|--------|
@@ -87,7 +87,7 @@ All C/C++ files tracked by git must pass clang-format before submission (CI runs
 
 ```bash
 make style-format-clang   # apply .clang-format
-make style-check-clang    # verify (requires venv from prepare-tools)
+make style-check-clang    # verify (requires venv from build-prep)
 ```
 
 ## Reference

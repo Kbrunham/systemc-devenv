@@ -41,7 +41,7 @@ Code layout:
 - Build: root CMakeLists.txt, deps via root Makefile
 
 Verify changes:
-make prepare-tools && cmake -B build && cmake --build build && ctest --test-dir build
+make build-prep && make test
 make style-check-clang
 
 Format C/C++ before submitting: make style-format-clang (required for CI).

@@ -44,7 +44,7 @@ find_library(SYSTEMC_LIBRARY
         HINTS "${SYSTEMC_HOME}/lib" "${SYSTEMC_HOME}/lib-${CMAKE_SYSTEM_NAME}")
 
 if (NOT SYSTEMC_INCLUDE_DIR OR NOT SYSTEMC_LIBRARY)
-    message(FATAL_ERROR "SystemC not found under ${SYSTEMC_HOME}. Run 'make systemc' or 'make prepare-tools'.")
+    message(FATAL_ERROR "SystemC not found under ${SYSTEMC_HOME}. Run 'make systemc' or 'make build-prep'.")
 endif ()
 
 add_library(systemc::systemc UNKNOWN IMPORTED)
