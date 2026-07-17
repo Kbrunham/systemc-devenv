@@ -48,6 +48,7 @@ SystemC model, and verification tests synchronized.
 - **DevContainer** — `mcr.microsoft.com/devcontainers/cpp:ubuntu-24.04`
 - **Product scaffolds** — `docs/spec/`, `docs/gaps/`, `docs/upstream/`
 - **Architectural Review Agent** — `docs/agents/ARCHITECTURAL_REVIEW.md`
+- **Model development stages** — `docs/agents/MODEL_DEVELOPMENT_STAGES.md`
 
 ## Quick start
 
@@ -66,6 +67,7 @@ or copy the prompt from [docs/agents/CHAT_INIT.md](docs/agents/CHAT_INIT.md) int
 docs/spec/            # product specification scaffold
 docs/gaps/            # divergence tracker scaffold
 docs/upstream/        # template feedback + LEARNINGS log
+docs/agents/          # GETTING_STARTED, CHAT_INIT, ARCHITECTURAL_REVIEW, MODEL_DEVELOPMENT_STAGES
 model/views/
   cycle_accurate/     # primary sc_module style (hello-world in v1)
   loosely_timed/      # placeholder
