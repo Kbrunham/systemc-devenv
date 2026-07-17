@@ -16,6 +16,7 @@ scope.
 |------|--------------|-------------|
 | Implementation | Build or change collateral | [CHAT_INIT.md](CHAT_INIT.md) — default block |
 | Architectural Review | PR or periodic consistency review | [CHAT_INIT.md](CHAT_INIT.md) — review block, [ARCHITECTURAL_REVIEW.md](ARCHITECTURAL_REVIEW.md) |
+| Confluence sync | Optional HAS re-import | [CHAT_INIT.md](CHAT_INIT.md) — sync block, [CONFLUENCE_SYNC.md](CONFLUENCE_SYNC.md) |
 
 Architectural reviewers reason across the full repository, not only diffs. See
 [ARCHITECTURAL_REVIEW.md](ARCHITECTURAL_REVIEW.md) for review output format and criteria.
@@ -48,6 +49,9 @@ docs/gaps/GAPS.md             # divergence tracker scaffold
 docs/upstream/                # template feedback workflow + LEARNINGS log
 docs/agents/ARCHITECTURAL_REVIEW.md  # review agent instructions
 docs/agents/MODEL_DEVELOPMENT_STAGES.md  # Layer A–D modeling progression
+docs/agents/CONFLUENCE_SYNC.md # optional Confluence import runbook
+docs/spec/import/             # optional Confluence mirror scaffold
+tools/                        # optional Confluence import helpers
 model/views/cycle_accurate/   # hello sc_module
 model/views/loosely_timed/    # stub
 model/views/approximately_timed/ # stub
@@ -102,3 +106,4 @@ make style-check-clang    # verify (requires venv from build-prep)
 | [upstream/README.md](../upstream/README.md) | Template feedback workflow |
 | [ARCHITECTURAL_REVIEW.md](ARCHITECTURAL_REVIEW.md) | Architectural Review Agent |
 | [MODEL_DEVELOPMENT_STAGES.md](MODEL_DEVELOPMENT_STAGES.md) | Layer A–D modeling progression |
+| [CONFLUENCE_SYNC.md](CONFLUENCE_SYNC.md) | Optional Confluence import runbook |

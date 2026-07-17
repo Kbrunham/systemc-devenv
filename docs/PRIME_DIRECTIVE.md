@@ -134,3 +134,4 @@ Review Agents reason across the full repository, not only modified files.
 | [agents/CHAT_INIT.md](agents/CHAT_INIT.md) | Copy-paste prompts for new agent sessions |
 | [agents/ARCHITECTURAL_REVIEW.md](agents/ARCHITECTURAL_REVIEW.md) | Architectural Review Agent |
 | [agents/MODEL_DEVELOPMENT_STAGES.md](agents/MODEL_DEVELOPMENT_STAGES.md) | Layer A–D modeling progression |
+| [agents/CONFLUENCE_SYNC.md](agents/CONFLUENCE_SYNC.md) | Optional Confluence import runbook |

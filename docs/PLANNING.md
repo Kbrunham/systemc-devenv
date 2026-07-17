@@ -68,6 +68,7 @@ systemc-devenv/
 │   ├── PRIME_DIRECTIVE.md            # mission, scope, agent rules (read first)
 │   ├── PLANNING.md                   # this file
 │   ├── spec/README.md                # product spec scaffold (customize after Use this template)
+│   ├── spec/import/                  # optional Confluence mirror scaffold
 │   ├── gaps/GAPS.md                  # divergence tracker scaffold
 │   ├── upstream/                     # template feedback workflow + LEARNINGS log
 │   ├── developer/getting-started.md
@@ -75,7 +76,9 @@ systemc-devenv/
 │       ├── GETTING_STARTED.md
 │       ├── CHAT_INIT.md
 │       ├── ARCHITECTURAL_REVIEW.md   # review agent instructions
-│       └── MODEL_DEVELOPMENT_STAGES.md  # Layer A–D modeling progression
+│       ├── MODEL_DEVELOPMENT_STAGES.md  # Layer A–D modeling progression
+│       └── CONFLUENCE_SYNC.md        # optional Confluence import runbook
+├── tools/                            # optional Confluence import helpers
 ├── model/
 │   └── views/
 │       ├── cycle_accurate/           # hello sc_module
@@ -104,6 +107,7 @@ systemc-devenv/
 - [x] Product-repo path scaffolds: `docs/spec/`, `docs/gaps/`, `docs/upstream/`
 - [x] Architectural Review Agent + Specification-First consistency docs
 - [x] Model development stages guide (`docs/agents/MODEL_DEVELOPMENT_STAGES.md`)
+- [x] Optional Confluence import scaffold (`docs/spec/import/`, `CONFLUENCE_SYNC.md`, tools)
 - [ ] Tag e.g. `v0.1.0`
 - [ ] Enable "Template repository" on GitHub
 
@@ -116,7 +120,9 @@ systemc-devenv/
 4. Replace hello-world with IP-specific models and tests
 5. Follow [agents/MODEL_DEVELOPMENT_STAGES.md](agents/MODEL_DEVELOPMENT_STAGES.md) for
    Layer A→D progression
-6. Use [agents/ARCHITECTURAL_REVIEW.md](agents/ARCHITECTURAL_REVIEW.md) for PR and
+6. If the HAS is in Confluence, fill [agents/CONFLUENCE_SYNC.md](agents/CONFLUENCE_SYNC.md)
+   and use `docs/spec/import/`
+7. Use [agents/ARCHITECTURAL_REVIEW.md](agents/ARCHITECTURAL_REVIEW.md) for PR and
    periodic consistency review
 
 ## Provenance
