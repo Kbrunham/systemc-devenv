@@ -36,7 +36,7 @@ This template provides:
 | Coverage | Optional `ENABLE_COVERAGE` (gcov/lcov), documented |
 | Primary model style | `sc_module` + signals (cycle-accurate view) |
 | Other timing views | `loosely_timed/`, `approximately_timed/` — placeholders only in v1 |
-| CI/CD | **Deferred** for v1 |
+| CI/CD | GitHub Actions: `build-test` (`make test`) + `style-checks` |
 | License | MIT |
 
 ## Dependency strategy
@@ -108,6 +108,7 @@ systemc-devenv/
 - [x] Architectural Review Agent + Specification-First consistency docs
 - [x] Model development stages guide (`docs/agents/MODEL_DEVELOPMENT_STAGES.md`)
 - [x] Optional Confluence import scaffold (`docs/spec/import/`, `CONFLUENCE_SYNC.md`, tools)
+- [x] CI `build-test` uses cached SystemC + `make test` (aligned with Makefile)
 - [ ] Tag e.g. `v0.1.0`
 - [ ] Enable "Template repository" on GitHub
 
