@@ -89,5 +89,5 @@ Run `make style-format-clang` to apply `.clang-format` automatically.
 - In upstream `systemc-devenv`: template infrastructure only
 - In a product repo: delete or replace the template note, define the concrete IP scope,
   and add product specs, requirement IDs, tests, and architectural TODOs as needed
-- CI (`.github/`) changes are deferred unless trivial
+- Prefer keeping CI aligned with `make build-prep` / `make test` and `make style-check-clang`
 - Ask before large structural changes not listed in PLANNING.md

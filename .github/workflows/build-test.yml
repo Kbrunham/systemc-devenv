@@ -13,7 +13,9 @@ defaults:
 
 env:
     BOOST_VERSION: 1.86.0
+    SYSTEMC_VERSION: 3.0.2
     BOOST_ROOT: ${{ github.workspace }}/boost
+    SYSTEMC_HOME: ${{ github.workspace }}/systemc
 
 # Ensure only one instance of the workflow is running for a given branch
 concurrency:
@@ -45,33 +47,52 @@ jobs:
       uses: actions/setup-python@v6.3.0
       with:
         python-version: '3.10'
+
     - uses: lukka/get-cmake@v4.3.4
       with:
-        cmakeVersion: "~3.22.1"
+        # Match cmake_minimum_required(VERSION 3.24) and PLANNING (Ubuntu 24.04 → 3.28)
+        cmakeVersion: "~3.28.0"
         ninjaVersion: "^1.10.1"
 
     - name: Prepare Venv
-      run: |
-        make venv
+      run: make venv
+
     - name: Cache Boost
       id: cache-boost
       uses: actions/cache@v6.1.0
       with:
         path: boost
         key: ${{ runner.os }}-boost-${{ env.BOOST_VERSION }}
+
     - name: Prepare Boost
       if: steps.cache-boost.outputs.cache-hit != 'true'
+      run: make boost
+
+    - name: Stamp Boost (cache hit)
+      if: steps.cache-boost.outputs.cache-hit == 'true'
       run: |
-        make boost
-    - name: Running cmake
+        mkdir -p .stamps
+        touch .stamps/boost.done
+
+    - name: Cache SystemC
+      id: cache-systemc
+      uses: actions/cache@v6.1.0
+      with:
+        path: systemc
+        key: ${{ runner.os }}-systemc-${{ env.SYSTEMC_VERSION }}
+
+    - name: Prepare SystemC
+      if: steps.cache-systemc.outputs.cache-hit != 'true'
+      run: make systemc
+
+    - name: Stamp SystemC (cache hit)
+      if: steps.cache-systemc.outputs.cache-hit == 'true'
       run: |
-        cmake -B build -S . -G Ninja
-    - name: Running Build
-      run: |
-        cmake --build build
-    - name: Running Tests
-      run: |
-        ctest --test-dir build
+        mkdir -p .stamps
+        touch .stamps/systemc.done
+
+    - name: Build and test
+      run: make test
 
   post-status:
     name: Post Status
