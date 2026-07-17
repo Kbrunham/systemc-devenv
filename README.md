@@ -21,8 +21,9 @@ belongs here vs in a product repo, and how agents should work.
 2. Rename project-facing text from `systemc-devenv` to the new repo/IP name.
 3. Delete or replace the `TEMPLATE NOTE` headers in [AGENTS.md](AGENTS.md) and
    [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md) with the concrete IP/block scope.
-4. Define where the product specification, requirement IDs, test plan, and architectural
-   gap tracking live.
+4. Customize [docs/spec/README.md](docs/spec/README.md) (spec location + `REQ-` IDs); use
+   [docs/gaps/GAPS.md](docs/gaps/GAPS.md) for divergence; add an `upstream` remote and see
+   [docs/upstream/README.md](docs/upstream/README.md).
 5. Replace the hello-world model and smoke test with product model behavior and tests.
 6. Run the standard build:
 
@@ -43,6 +44,7 @@ SystemC model, and verification tests synchronized.
 - **GoogleTest** — in-tree under `extern/googletest`
 - **CMake 3.24+** — model library, executable, smoke test, optional coverage
 - **DevContainer** — `mcr.microsoft.com/devcontainers/cpp:ubuntu-24.04`
+- **Product scaffolds** — `docs/spec/`, `docs/gaps/`, `docs/upstream/`
 
 ## Quick start
 
@@ -60,6 +62,9 @@ or copy the prompt from [docs/agents/CHAT_INIT.md](docs/agents/CHAT_INIT.md) int
 ## Directory layout
 
 ```
+docs/spec/            # product specification scaffold
+docs/gaps/            # divergence tracker scaffold
+docs/upstream/        # template feedback + LEARNINGS log
 model/views/
   cycle_accurate/     # primary sc_module style (hello-world in v1)
   loosely_timed/      # placeholder

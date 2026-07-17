@@ -28,12 +28,14 @@ layout, and agent conventions that product repos inherit.
 ## What success looks like
 
 - `make prepare-tools && cmake -B build && cmake --build build && ctest --test-dir build` passes
-- Product specifications live under the repo's documented spec location
+- Product specifications live under [spec/](spec/) (see [spec/README.md](spec/README.md))
 - Models live under `model/views/<timing_view>/`
 - Tests live under `verification/systemc/`
-- Requirement IDs, test plans, and gap tracking are kept consistent with the product
-  repo's conventions
+- Requirement IDs and gaps stay consistent with [spec/README.md](spec/README.md) and
+  [gaps/GAPS.md](gaps/GAPS.md)
 - Changes keep specification, implementation, tests, and documentation aligned
+- Reusable template improvements discovered in product repos are logged in
+  [upstream/LEARNINGS.md](upstream/LEARNINGS.md) and promoted upstream when ready
 
 ## Product repository setup
 
@@ -41,10 +43,14 @@ After creating a product repo from this template:
 
 1. Delete or replace the template note at the top of this file and
    [../AGENTS.md](../AGENTS.md) with the concrete IP/block name.
-2. Define the product scope and specification location.
-3. Define requirement ID and traceability conventions, if used.
-4. Define where architectural gaps and deferred work are tracked.
-5. Replace the hello-world model and smoke test with product behavior and tests.
+2. Define product scope in this file and [PLANNING.md](PLANNING.md).
+3. Customize [spec/README.md](spec/README.md) — specification location, source of truth,
+   and `REQ-` ID convention.
+4. Use [gaps/GAPS.md](gaps/GAPS.md) for architectural / collateral divergence.
+5. Add a git remote named `upstream` pointing at this template; use
+   [upstream/README.md](upstream/README.md) and [upstream/LEARNINGS.md](upstream/LEARNINGS.md)
+   to feed reusable improvements back.
+6. Replace the hello-world model and smoke test with product behavior and tests.
 
 ## Upstream template boundary
 
@@ -61,15 +67,18 @@ architectural TODOs belong in a repo created from this template.
 
 ## Agent rules
 
-1. Before starting, state whether the work is template infrastructure or product/IP work.
+1. Before starting, state whether the work is template infrastructure, product/IP work, or
+   upstream feedback (see [upstream/README.md](upstream/README.md)).
 2. In upstream `systemc-devenv`, extend infrastructure and patterns only.
 3. In a product repo, keep specification, model, and tests aligned.
-4. Record unresolved spec/model/test gaps in the product repo's documented gap tracker.
-5. A single change may touch docs, model, tests, and build files when needed to keep
+4. Record unresolved spec/model/test gaps in [gaps/GAPS.md](gaps/GAPS.md).
+5. When a change would improve the generic template for all product repos, log it in
+   [upstream/LEARNINGS.md](upstream/LEARNINGS.md).
+6. A single change may touch docs, model, tests, and build files when needed to keep
    the repository consistent.
-6. Locked toolchain versions change only by updating [PLANNING.md](PLANNING.md) with justification.
-7. Verify with the standard build sequence and `make style-check-clang` before considering work complete.
-8. Run `make style-format-clang` on any C/C++ files you add or edit.
+7. Locked toolchain versions change only by updating [PLANNING.md](PLANNING.md) with justification.
+8. Verify with the standard build sequence and `make style-check-clang` before considering work complete.
+9. Run `make style-format-clang` on any C/C++ files you add or edit.
 
 ## Related documentation
 
@@ -77,5 +86,9 @@ architectural TODOs belong in a repo created from this template.
 |----------|---------|
 | [AGENTS.md](../AGENTS.md) | Short agent entry point |
 | [PLANNING.md](PLANNING.md) | Locked technical decisions and milestones |
+| [spec/README.md](spec/README.md) | Product specification scaffold |
+| [gaps/GAPS.md](gaps/GAPS.md) | Divergence tracker scaffold |
+| [upstream/README.md](upstream/README.md) | Template feedback workflow |
+| [upstream/LEARNINGS.md](upstream/LEARNINGS.md) | Learnings log for upstream PRs |
 | [agents/GETTING_STARTED.md](agents/GETTING_STARTED.md) | Build flow and layout |
 | [agents/CHAT_INIT.md](agents/CHAT_INIT.md) | Copy-paste prompt for new agent sessions |

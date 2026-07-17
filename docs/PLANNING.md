@@ -20,6 +20,7 @@ This template provides:
 - Directory layout for models and verification
 - Hello-world SystemC model + GTest smoke test
 - Generic agent/developer documentation
+- Product-repo scaffolds: `docs/spec/`, `docs/gaps/`, `docs/upstream/`
 
 ## Locked technical decisions
 
@@ -64,6 +65,9 @@ systemc-devenv/
 ├── docs/
 │   ├── PRIME_DIRECTIVE.md            # mission, scope, agent rules (read first)
 │   ├── PLANNING.md                   # this file
+│   ├── spec/README.md                # product spec scaffold (customize after Use this template)
+│   ├── gaps/GAPS.md                  # divergence tracker scaffold
+│   ├── upstream/                     # template feedback workflow + LEARNINGS log
 │   ├── developer/getting-started.md
 │   └── agents/
 │       ├── GETTING_STARTED.md
@@ -92,6 +96,7 @@ systemc-devenv/
 - [x] Generic `AGENTS.md` + `docs/agents/GETTING_STARTED.md`
 - [x] `docs/PRIME_DIRECTIVE.md`
 - [x] Product-repo scaffold notes in `AGENTS.md` and `docs/PRIME_DIRECTIVE.md`
+- [x] Product-repo path scaffolds: `docs/spec/`, `docs/gaps/`, `docs/upstream/`
 - [ ] Tag e.g. `v0.1.0`
 - [ ] Enable "Template repository" on GitHub
 
@@ -99,7 +104,9 @@ systemc-devenv/
 
 1. Enable **"Template repository"** on GitHub (if maintaining the template itself)
 2. Create your product repo via **"Use this template"**
-3. Add IP-specific docs, specs, models, and tests in the new repo
+3. Follow [PRIME_DIRECTIVE.md](PRIME_DIRECTIVE.md) product-repo setup (customize
+   `docs/spec/`, use `docs/gaps/GAPS.md`, add `upstream` remote)
+4. Replace hello-world with IP-specific models and tests
 
 ## Provenance
 
