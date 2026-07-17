@@ -21,6 +21,8 @@ Copy a prompt from [docs/agents/CHAT_INIT.md](docs/agents/CHAT_INIT.md):
 1. [docs/PRIME_DIRECTIVE.md](docs/PRIME_DIRECTIVE.md) — mission, scope, agent rules
 2. [docs/PLANNING.md](docs/PLANNING.md) — technical decisions and milestones
 3. [docs/agents/GETTING_STARTED.md](docs/agents/GETTING_STARTED.md) — build flow and layout
+4. [docs/agents/MODEL_DEVELOPMENT_STAGES.md](docs/agents/MODEL_DEVELOPMENT_STAGES.md) —
+   modeling progression (product repos)
 
 **Architectural review:** also read [docs/agents/ARCHITECTURAL_REVIEW.md](docs/agents/ARCHITECTURAL_REVIEW.md).
 

@@ -47,6 +47,7 @@ docs/spec/README.md           # product spec scaffold (customize after Use this 
 docs/gaps/GAPS.md             # divergence tracker scaffold
 docs/upstream/                # template feedback workflow + LEARNINGS log
 docs/agents/ARCHITECTURAL_REVIEW.md  # review agent instructions
+docs/agents/MODEL_DEVELOPMENT_STAGES.md  # Layer A–D modeling progression
 model/views/cycle_accurate/   # hello sc_module
 model/views/loosely_timed/    # stub
 model/views/approximately_timed/ # stub
@@ -100,3 +101,4 @@ make style-check-clang    # verify (requires venv from build-prep)
 | [gaps/GAPS.md](../gaps/GAPS.md) | Divergence tracker scaffold |
 | [upstream/README.md](../upstream/README.md) | Template feedback workflow |
 | [ARCHITECTURAL_REVIEW.md](ARCHITECTURAL_REVIEW.md) | Architectural Review Agent |
+| [MODEL_DEVELOPMENT_STAGES.md](MODEL_DEVELOPMENT_STAGES.md) | Layer A–D modeling progression |

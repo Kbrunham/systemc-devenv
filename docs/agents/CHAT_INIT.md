@@ -12,6 +12,7 @@ Read these files to get up to speed with this repo:
 3. docs/PLANNING.md — technical decisions and milestones
 4. docs/spec/README.md — specification location and traceability (product repos)
 5. docs/agents/GETTING_STARTED.md — build flow and conventions
+6. docs/agents/MODEL_DEVELOPMENT_STAGES.md — Layer A–D modeling progression (product repos)
 
 This repo may be either:
 - upstream **systemc-devenv**, the generic SystemC development template
