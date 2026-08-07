@@ -48,7 +48,7 @@ jobs:
       with:
         python-version: '3.10'
 
-    - uses: lukka/get-cmake@v4.4.0
+    - uses: lukka/get-cmake@v4.4.2
       with:
         # Match cmake_minimum_required(VERSION 3.24) and PLANNING (Ubuntu 24.04 → 3.28)
         cmakeVersion: "~3.28.0"
